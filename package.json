@@ -14,7 +14,8 @@
     "JS",
     "Javascript",
     "regex",
-    "regexp"
+    "regexp",
+    "regular expressions"
   ],
   "author": "Oleksandr Trypolskyi",
   "license": "MIT",
@@ -24,5 +25,10 @@
   "homepage": "https://github.com/trypolski/regexies#readme",
   "devDependencies": {
     "mocha": "^8.0.1"
-  }
+  },
+  "files": [
+    "index.js",
+    "package.json",
+    "README.md"
+  ]
 }

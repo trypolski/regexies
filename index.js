@@ -16,9 +16,26 @@ function isEmail(email) {
   return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
+function isJwt(jwt) {
+  return /^([a-zA-Z0-9_=]{4,})\.([a-zA-Z0-9_=]{4,})\.([a-zA-Z0-9_\-\+\/=]{4,})/.test(jwt);
+}
+
+function isUrl(url, includesHttp = true) {
+  const urlRegex = new RegExp(`^${includesHttp ? 'https?:\/\/(www\.)?' : ''}[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)`);
+  return urlRegex.test(url);
+}
+
+function isHexColor(hex, dash = true) {
+  const hexRegex = new RegExp(`^${dash ? '#' : ''}(?:[a-fA-F\\d]{3}){1,2}$`);
+  return hexRegex.test(hex);
+}
+
 module.exports = {
   isBearer,
   isUuid,
   isPassword,
-  isEmail
+  isEmail,
+  isJwt,
+  isUrl,
+  isHexColor
 }

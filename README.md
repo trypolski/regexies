@@ -1,6 +1,6 @@
 # Regexies
 
-The library includes a list of popular regex functions for every project usage. If you are lazy enough to create your own regular expressions or bored to move regex helper function from project to project (like me) than Regexies is a good choise.
+The library includes a list of popular regex functions for every project usage. If you are lazy enough to create your own regular expressions or bored to move regex helper functions from project to project (like me) than Regexies is a good choise.
 
 ## Install
 Install using npm:
@@ -64,15 +64,47 @@ const isCorrectUuidV4 = isUuid('b5fafcae-c961-11ea-87d0-0242ac130003', true) // 
 ```
 
 #### isBearer
-Verify Authorization header data that looks like "Bearer <token>" using "isBearer" function.
+Verify Authorization header data that looks like "Bearer some.token.value" using "isBearer" function.
 ```javascript
 const isCorrectBearer = isBearer('Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI') // true
 const isCorrectBearer = isBearer('BearereyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI') // false
 const isCorrectBearer = isBearer('"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI"') // false
 ```
 
+#### isJwt
+Verify value of JWT token using "isJwt" function. There is a way to create more strict regex to check Base64Url encoded data string for JWT token. Regexies allows not only "." symbol in encoded string, but some additional symbols as required for Base64Url encoded data.
+```javascript
+const isCorrectJwt = isJwt('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ') // true
+const isCorrectJwt = isJwt('eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA.as1') // false
+const isCorrectJwt = isJwt('"eyJ.eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA"') // false
+```
+
+#### isUrl
+Verify URLs using "isUrl" function. By default "http" or "https" prefix is required, but you can always disable it adding second argument to the function as "false".
+```javascript
+const isCorrectUrl = isUrl('http://google.com/') // true
+const isCorrectUrl = isUrl('https://google.com/') // true
+const isCorrectUrl = isUrl('google.com/') // false
+// but
+const isCorrectUrl = isUrl('www.google.com', false) // true
+const isCorrectUrl = isUrl('&google.com', false) // false
+```
+
+#### isHexColor
+Verify css colors using "isHexColor" function. By default hex color should start with "#" symbol, but you can disable it adding second argument to the function as "false".
+```javascript
+const isCorrectHexColor = isHexColor('#fFf111') // true
+const isCorrectHexColor = isHexColor('#000') // true
+const isCorrectHexColor = isHexColor('#000qff') // false
+const isCorrectHexColor = isHexColor('000000') // false
+// but
+const isCorrectHexColor = isHexColor('000FFF', false) // true
+const isCorrectHexColor = isHexColor('000', false) // true
+const isCorrectHexColor = isHexColor('00W880', false) // false
+```
+
 ## Tests
 Tests are not included in regexies library if you install it through npm. Please clone git repo of the library to find tests.
 
-## Upates
-Expect more functions with next updates.
+## Updates
+Expect more functions with next everyweek updates.

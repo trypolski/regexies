@@ -1,7 +1,7 @@
 {
   "name": "regexies",
   "version": "1.0.1",
-  "description": "Ready for use JavaScript regex you need!",
+  "description": "Ready to use JavaScript regex you need!",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

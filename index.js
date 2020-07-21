@@ -30,6 +30,26 @@ function isHexColor(hex, dash = true) {
   return hexRegex.test(hex);
 }
 
+function isImageMimetype(fileMimeType, types = ['png', 'jpeg', 'gif']) {
+  const imageMimetypeRegex = new RegExp(`^image\/(${types.join('|')})$`);
+  return imageMimetypeRegex.test(fileMimeType);
+}
+
+function isAudioMimetype(fileMimeType, types = ['mpeg']) {
+  const audioMimetypeRegex = new RegExp(`^audio\/(${types.join('|')})$`);
+  return audioMimetypeRegex.test(fileMimeType);
+}
+
+function isVideoMimetype(fileMimeType, types = ['mpeg', 'mp4', 'quicktime']) {
+  const videoMimetypeRegex = new RegExp(`^video\/(${types.join('|')})$`);
+  return videoMimetypeRegex.test(fileMimeType);
+}
+
+function isMimetype(fileMimeType, mimePrefix = 'image', types = ['png', 'jpeg', 'gif']) {
+  const mimeTypeRegex = new RegExp(`^${mimePrefix}\/(${types.join('|')})$`);
+  return mimeTypeRegex.test(fileMimeType);
+}
+
 module.exports = {
   isBearer,
   isUuid,
@@ -37,5 +57,9 @@ module.exports = {
   isEmail,
   isJwt,
   isUrl,
-  isHexColor
+  isHexColor,
+  isImageMimetype,
+  isAudioMimetype,
+  isVideoMimetype,
+  isMimetype
 }

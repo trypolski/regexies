@@ -51,7 +51,7 @@ const isCorrectPassword = isPassword('123abc°!', 5, 20, '°') // false
 ```
 
 #### isUuid
-Verify uuid string using "isUuid" function. By default function supported all version of uuid.
+Verify uuid string using "isUuid" function. By default the function supports all versions of uuid.
 ```javascript
 const isCorrectUuid = isUuid('e56ef521-03b3-4664-8e69-982729ebe460') // true (version 4)
 const isCorrectUuid = isUuid('b5fafcae-c961-11ea-87d0-0242ac130003') // true (version 1)
@@ -102,6 +102,52 @@ const isCorrectHexColor = isHexColor('000FFF', false) // true
 const isCorrectHexColor = isHexColor('000', false) // true
 const isCorrectHexColor = isHexColor('00W880', false) // false
 ```
+
+#### isImageMimetype
+Verify MIME type of image files using "isImageMimetype" function. By default the function allows "image/png", "image/jpeg", and "image/gif".
+```javascript
+const isCorrectImageType = isImageMimetype('image/png') // true
+const isCorrectImageType = isImageMimetype('image/x-icon') // false
+```
+You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:
+```javascript
+const isCorrectImageType = isImageMimetype('image/x-icon', ['png', 'jpeg', 'x-icon']) // true
+```
+If you want to add support of "image/svg+xml" you need to add additional escapes as:
+```javascript
+const isCorrectImageType = isImageMimetype('image/svg+xml', ['png', 'jpeg', 'svg\\+xml']) // true
+```
+:exclamation: Be careful, possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
+
+#### isAudioMimetype
+Verify MIME type of audio files using "isAudioMimetype" function. By default the function allows only "audio/mpeg".
+```javascript
+const isCorrectAudioType = isAudioMimetype('audio/mpeg') // true
+const isCorrectAudioType = isAudioMimetype('audio/x-aiff') // false
+```
+You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:
+```javascript
+const isCorrectAudioType = isAudioMimetype('audio/x-aiff', ['mpeg', 'x-aiff']) // true
+```
+
+#### isVideoMimetype
+Verify MIME type of video files using "isVideoMimetype" function. By default the function allows "video/mpeg", "video/mp4", and "video/quicktime".
+```javascript
+const isCorrectVideoType = isVideoMimetype('video/mp4') // true
+const isCorrectVideoType = isVideoMimetype('video/x-msvideo') // false
+```
+You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:
+```javascript
+const isCorrectVideoType = isVideoMimetype('audio/x-msvideo', ['mpeg', 'x-msvideo']) // true
+```
+
+#### isMimetype
+Verify any MIME type of files using "isMimeType" function. By default this function works as "isImageMimetype", but you can extend it for every file type. Use second argument to set prefix as 'image' or 'application'. Add array of types as third argument.
+```javascript
+const isCorrectType = isMimetype('application/zip', 'application', ['zip', 'vnd.ms-excel']) // true
+const isCorrectType = isMimetype('video/x-msvideo', 'application', ['zip', 'vnd.ms-excel']) // false
+```
+:exclamation: This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\\+xml".
 
 ## Tests
 Tests are not included in regexies library if you install it through npm. Please clone git repo of the library to find tests.

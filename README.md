@@ -149,6 +149,21 @@ const isCorrectType = isMimetype('video/x-msvideo', 'application', ['zip', 'vnd.
 ```
 :exclamation: This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\\+xml".
 
+#### isNumbersOnly
+Verify a string to find out if it includes only numbers or not.
+```javascript
+const hasOnlyNumbers = isNumbersOnly('12345678901234567890') // true
+const hasOnlyNumbers = isNumbersOnly('1a234567ssd890.') // false
+```
+
+#### isObjectId / isMongoId
+Verify mongodb id (that is ObjectId type). You can use two names that are aliases isObjectId and isMongoId. Theoretically, ObjectId is just a string contains numbers from 0 to 9, letters a, b, c, d, f and has length 24. Some strings could look not like typical MongoDB id, but are still correct for the regex pattern.
+```javascript
+const isCorrectObjectId = isObjectId('5f17d5d2040de74f301f686f') // true
+const isCorrectMongoId = isMongoId('abcdf1234012345678901234') // true
+const isCorrectMongoId = isMongoId('1a234567ssd890.') // false
+```
+
 ## Tests
 Tests are not included in regexies library if you install it through npm. Please clone git repo of the library to find tests.
 

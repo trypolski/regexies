@@ -50,6 +50,14 @@ function isMimetype(fileMimeType, mimePrefix = 'image', types = ['png', 'jpeg', 
   return mimeTypeRegex.test(fileMimeType);
 }
 
+function isNumbersOnly(string) {
+  return /^[0-9]*$/.test(string);
+}
+
+function isObjectId(id) {
+  return /^[a-f0-9]{24}$/.test(id);
+}
+
 module.exports = {
   isBearer,
   isUuid,
@@ -61,5 +69,8 @@ module.exports = {
   isImageMimetype,
   isAudioMimetype,
   isVideoMimetype,
-  isMimetype
+  isMimetype,
+  isNumbersOnly,
+  isObjectId,
+  isMongoId: isObjectId
 }

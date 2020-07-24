@@ -58,6 +58,10 @@ function isObjectId(id) {
   return /^[a-f0-9]{24}$/.test(id);
 }
 
+function isRomanNumber(number) {
+  return /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(number);
+}
+
 module.exports = {
   isBearer,
   isUuid,
@@ -72,5 +76,6 @@ module.exports = {
   isMimetype,
   isNumbersOnly,
   isObjectId,
-  isMongoId: isObjectId
+  isMongoId: isObjectId,
+  isRomanNumber
 }

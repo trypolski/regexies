@@ -164,6 +164,13 @@ const isCorrectMongoId = isMongoId('abcdf1234012345678901234') // true
 const isCorrectMongoId = isMongoId('1a234567ssd890.') // false
 ```
 
+#### isRomanNumber
+Verify a roman numbers using "isRomanNumber" function.
+```javascript
+const isCorrectRomanNumber = isRomanNumber('X') // true
+const isCorrectRomanNumber = isRomanNumber('IIX') // false
+```
+
 ## Tests
 Tests are not included in regexies library if you install it through npm. Please clone git repo of the library to find tests.
 

@@ -1,6 +1,6 @@
 {
   "name": "regexies",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Ready to use JavaScript regex you need!",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/trypolski/regexies#readme",
   "devDependencies": {
-    "mocha": "^8.0.1"
+    "mocha": "^8.2.1"
   },
   "files": [
     "index.js",

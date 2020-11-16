@@ -3,18 +3,18 @@ const isEmail = require('../index').isEmail
 
 describe('isEmail', function() {
   it('Should return true for correct email', function () {
-    assert.equal(isEmail('someemail@gmail.com'), true);
+    assert.strictEqual(isEmail('someemail@gmail.com'), true);
   });
   it('Should return false for incorrect email #1', function () {
-    assert.equal(isEmail('@gmail.com'), false);
+    assert.strictEqual(isEmail('@gmail.com'), false);
   });
   it('Should return false for incorrect email #2', function () {
-    assert.equal(isEmail('asdd@.com'), false);
+    assert.strictEqual(isEmail('asdd@.com'), false);
   });
   it('Should return false for incorrect email #3', function () {
-    assert.equal(isEmail('asda@gmail.c'), false);
+    assert.strictEqual(isEmail('asda@gmail.c'), false);
   });
   it('Should return false for incorrect email #4', function () {
-    assert.equal(isEmail('asda12@gmailcom'), false);
+    assert.strictEqual(isEmail('asda12@gmailcom'), false);
   });
 })

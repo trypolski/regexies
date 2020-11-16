@@ -62,6 +62,14 @@ function isRomanNumber(number) {
   return /^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(number);
 }
 
+function isTwitterHandle(string) {
+  return /^[a-zA-Z0-9_]{1,15}$/.test(string);
+}
+
+function isLinkedInProfileUrl(url) {
+  return /^(https?:\/\/)?(www.)?linkedin.com\/in\/([a-zA-Z0-9]{5,30})(\/)?$/.test(url);
+}
+
 module.exports = {
   isBearer,
   isUuid,
@@ -77,5 +85,7 @@ module.exports = {
   isNumbersOnly,
   isObjectId,
   isMongoId: isObjectId,
-  isRomanNumber
+  isRomanNumber,
+  isTwitterHandle,
+  isLinkedInProfileUrl
 }

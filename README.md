@@ -171,6 +171,20 @@ const isCorrectRomanNumber = isRomanNumber('X') // true
 const isCorrectRomanNumber = isRomanNumber('IIX') // false
 ```
 
+#### isTwitterHandle
+Verify a twitter handle using "isTwitterHandle" function. Handle's length should be less than 15, handle can include letters, numbers and underscore.
+```javascript
+const isCorrectTwitterHandle = isTwitterHandle('john_smith09') // true
+const isCorrectTwitterHandle = isTwitterHandle('john_$mith09') // false
+```
+
+#### isLinkedInProfileUrl
+Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.
+```javascript
+const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/johnsmith/') // true
+const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/_smith/') // false
+```
+
 ## Tests
 Tests are not included in regexies library if you install it through npm. Please clone git repo of the library to find tests.
 

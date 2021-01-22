@@ -26,6 +26,24 @@ isPassword('sometestpassword')
 ```
 
 ## Documentation
+Verify strings using these functions:
+* [Email address](#isemail)
+* [Password](#ispassword)
+* [UUID](#isuuid)
+* [Bearer header](#isbearer)
+* [JWT token](#isjwt)
+* [URL](#isurl)
+* [HEX color](#ishexcolor)
+* [Image MIME type](#isimagemimetype)
+* [Audio MIME type](#isaudiomimetype)
+* [Video MIME type](#isvideomimetype)
+* [Any custom MIME type](#ismimetype)
+* [Numbers](#isnumbersonly)
+* [ObjectId/MongoId](#isobjectid--ismongoid)
+* [Roman number](#isromannumber)
+* [Twitter handle](#istwitterhandle)
+* [LinkedIn public profile URL](#islinkedinprofileurl)
+
 #### isEmail
 Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.
 ```javascript

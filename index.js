@@ -67,7 +67,7 @@ function isTwitterHandle(string) {
 }
 
 function isLinkedInProfileUrl(url) {
-  return /^(https?:\/\/)?(www.)?linkedin.com\/in\/([a-zA-Z0-9]{5,30})(\/)?$/.test(url);
+  return /^(https?:\/\/)?(www.|([a-z]{2}).)?linkedin.com\/in\/\S{3,100}$/.test(url);
 }
 
 module.exports = {

@@ -26,6 +26,25 @@ isPassword('sometestpassword')
 ```
 
 ## Documentation
+Verify strings using these functions:
+* [Email address](#isemail)
+* [Password](#ispassword)
+* [UUID](#isuuid)
+* [Bearer header](#isbearer)
+* [JWT token](#isjwt)
+* [URL](#isurl)
+* [HEX color](#ishexcolor)
+* [Image MIME type](#isimagemimetype)
+* [Audio MIME type](#isaudiomimetype)
+* [Video MIME type](#isvideomimetype)
+* [Any custom MIME type](#ismimetype)
+* [Numbers](#isnumbersonly)
+* [ObjectId/MongoId](#isobjectid--ismongoid)
+* [Roman number](#isromannumber)
+* [Twitter handle](#istwitterhandle)
+* [LinkedIn public profile URL](#islinkedinprofileurl)
+* [Facebook public profile URL](#isfacebookprofileurl)
+
 #### isEmail
 Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.
 ```javascript
@@ -179,10 +198,22 @@ const isCorrectTwitterHandle = isTwitterHandle('john_$mith09') // false
 ```
 
 #### isLinkedInProfileUrl
-Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.
+Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.  
+Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.  
+Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.  
 ```javascript
 const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/johnsmith/') // true
-const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/_smith/') // false
+const isCorrectProfileUrl = isLinkedInProfileUrl('http://ca.linkedin.com/in/johnsmith') // true
+const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/jo/') // false
+```
+
+#### isFacebookProfileUrl
+Verify a Facebook profile URL using "isFacebookProfileUrl" function.  
+Optional: http, https, www, max length, slash at the end.  
+Strict: facebook.com, 5 symbols min length, can not include any specific characters except period.  
+```javascript
+const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john.smith01/') // true
+const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john/') // false
 ```
 
 ## Tests

@@ -208,9 +208,9 @@ const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/jo
 ```
 
 #### isFacebookProfileUrl
-Verify a Facebook profile URL using "isFacebookProfileUrl" function.   
-Optional: http, https, www, max length, slash at the end.
-Strict: facebook.com, 5 symbols min length, can not include any specific characters except period
+Verify a Facebook profile URL using "isFacebookProfileUrl" function.  
+Optional: http, https, www, max length, slash at the end.  
+Strict: facebook.com, 5 symbols min length, can not include any specific characters except period.  
 ```javascript
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john.smith01/') // true
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john/') // false

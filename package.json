@@ -11,10 +11,11 @@
     "url": "git+https://github.com/trypolski/regexies.git"
   },
   "keywords": [
-    "JS",
-    "Javascript",
+    "regular",
+    "expressions",
     "regex",
     "regexp",
+    "match",
     "regular expressions"
   ],
   "author": "Oleksandr Trypolskyi",

@@ -1,6 +1,6 @@
 {
   "name": "regexies",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Ready to use JavaScript regex you need!",
   "main": "index.js",
   "scripts": {

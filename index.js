@@ -67,7 +67,11 @@ function isTwitterHandle(string) {
 }
 
 function isLinkedInProfileUrl(url) {
-  return /^(https?:\/\/)?(www.|([a-z]{2}).)?linkedin.com\/in\/\S{3,100}$/.test(url);
+  return /^(https?:\/\/)?(www.|([a-z]{2}).)?linkedin.com\/in\/\S{3,100}\/?$/.test(url);
+}
+
+function isFacebookProfileUrl(url) {
+  return /^(https?:\/\/)?(www.)?facebook.com\/[a-zA-Z0-9.]{5,}\/?$/.test(url);
 }
 
 module.exports = {
@@ -87,5 +91,6 @@ module.exports = {
   isMongoId: isObjectId,
   isRomanNumber,
   isTwitterHandle,
-  isLinkedInProfileUrl
+  isLinkedInProfileUrl,
+  isFacebookProfileUrl
 }

@@ -26,7 +26,11 @@ isPassword('sometestpassword')
 ```
 
 ## Documentation
-Verify strings using these functions:
+Build your own regex using these functions:
+* [is](#is)
+* [createIs](#createIs)
+
+Verify strings using these functions:  
 * [Email address](#isemail)
 * [Password](#ispassword)
 * [UUID](#isuuid)
@@ -44,6 +48,68 @@ Verify strings using these functions:
 * [Twitter handle](#istwitterhandle)
 * [LinkedIn public profile URL](#islinkedinprofileurl)
 * [Facebook public profile URL](#isfacebookprofileurl)
+
+#### is
+Use this function to create your own regex and check a string. This function is a wrapper function for [createIs](#createIs) and build in method .test of Regex class. To make your code less expensive just use [createIs](#createIs) to generate regex.
+```javascript
+/**
+ * @param  {String} string String to check
+ * @param  {Object | Array} userOptions Option object or array of option objects
+ * @param  {Boolean} checkOptionsInput Check or not type of option values, by default set to "false"
+ * @return {Boolean}
+ */
+is(string, userOptions, checkOptionsInput)
+```
+
+Second argument of the function could be object or array of object with option parameters.  
+```javascript
+const IS_DEFAULT_OPTIONS = {
+  numbers: false, // {Boolean} match numbers 0-9
+  lettersCountry: 'en', // {String} A country code to specify supported letters, English by default
+  lettersAll: false, // {Boolean} match lowercase and uppercase letters
+  lettersCapital: false, // {Boolean} match uppercase letters
+  lettersLowercase: false, // {Boolean} match lowercase letters
+  minLength: undefined, // {Number} set min length of mathing group
+  maxLength: undefined, // {Number} set max length of mathing group
+  specialCharacters: '', // {String} set special character in the string (escape "\"), automatically escapes needed characters
+  optional: false, // {Boolean} mark a matching group as optional
+  exact: '', // {String} put string that should exactly match, automatically escapes needed characters
+}
+```
+More about options:  
+**lettersCountry** - specify letters of which country should be supported. By default the functions supports English, but to add letters you need to add one of options *lettersAll*, *lettersCapital*, *lettersLowercase*. 
+Supported countries:   english 'en', german 'de', spanish 'es', franch 'fr', russian 'ru', ukrainian 'ua'. 
+More countries will be added in the future, it just takes a lot of time to figure out which letters should be included to regex.  
+**lettersAll** - this option has higher priority and overwrites *lettersCapital*, *lettersLowercase*.
+**minLength** - if *maxLength* value isn't set it will match from min to any length
+**maxLength** - if *minLength* value isn't set it will match from 0 to max
+**specialCharacters** - string that includes all special charachters like "'!?§$%&/". All characters will be automatically escaped by the function, but don't forget to escape "\" manually (specialCharacters: '\\' to add backslash)
+**exact** - ignores all options except *optional*
+
+Example:
+```javascript
+const options = [
+  { exact: 'http://www.google.com/' },
+  { lettersLowercase: true },
+  { specialCharacters: '/', minLength: 1, maxLength: 1 },
+  { numbers: true, optional: true }
+]
+const isResult = is('http://www.google.com/asd/0098767899', options) // true
+const isResult = is('http://www.google.com/asd/', options) // true
+const isResult = is('http://www.google.com/ASD/588766', options) // false
+const isResult = is('https://www.google.com/asdas/678', options) // false
+```
+
+#### createIs
+Use this function to generate regex based on options. This functiona use the same option parameters as [is](#is) function.
+```javascript
+/**
+ * @param  {Object | Array} userOptions Option object or array of option objects
+ * @param  {Boolean} checkOptionsInput Check or not type of option values, by default set to "false"
+ * @return {instanceof Regex}
+ */
+createIs(userOptions, checkOptionsInput)
+```
 
 #### isEmail
 Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.

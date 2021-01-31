@@ -1,6 +1,6 @@
 {
   "name": "regexies",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Ready to use JavaScript regex you need!",
   "main": "index.js",
   "scripts": {
@@ -11,11 +11,14 @@
     "url": "git+https://github.com/trypolski/regexies.git"
   },
   "keywords": [
-    "JS",
-    "Javascript",
+    "regular",
+    "expressions",
     "regex",
     "regexp",
-    "regular expressions"
+    "match",
+    "regular expressions",
+    "js regex",
+    "javascript regex"
   ],
   "author": "Oleksandr Trypolskyi",
   "license": "MIT",

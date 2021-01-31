@@ -1,3 +1,89 @@
+const LETTERS_BY_COUNTRY = {
+  en: { lowercase: 'a-z', capital: 'A-Z' },
+  de: { lowercase: 'a-z\u00e4\u00f6\u00fc\u00df', capital: 'A-Z\u00c4\u00d6\u00dc'},
+  es: { lowercase: 'a-zñáéíóúü', capital: 'A-ZÑÁÉÍÓÚÜ' },
+  ru: { lowercase: 'а-я\u0451', capital: 'А-Я\u0401' },
+  ua: { lowercase: 'абвгґдеєжзиіїйклмнопрстуфхцчшщьюя', capital: 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ' },
+  fr: { lowercase: 'a-zàâçéèêëîïôûùüÿñæœ', capital: 'A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÆŒ' },
+}
+
+const CHARACTERS_TO_ESCAPE = '.^$*+?()[]{}\\|/-'
+
+function convertCharToUnicode(char) {
+  const charHex = char.codePointAt(0).toString(16);
+  return '\\u' + '0000'.substring(0, 4 - charHex.length) + charHex;
+}
+
+function convertStringToUnicodes(str, convertToUnicode) {
+  return str.split('').reduce((str, char) => {
+    const needToEscape = CHARACTERS_TO_ESCAPE.includes(char);
+    const updatedChar = convertToUnicode && needToEscape ? convertCharToUnicode(char) : needToEscape ? `\\${char}` : char;
+    return str + updatedChar;
+  }, '');
+}
+
+function createIs(userOptions = {}, checkOptionsInput = false) {
+  if (typeof userOptions !== 'object' || (Array.isArray(userOptions) && userOptions.length === 0)) { throw 'The second argument (options) should be an object or of objects' }
+  if (typeof checkOptionsInput !== 'boolean') { throw 'The third argument should be a boolean' }
+
+  const IS_DEFAULT_OPTIONS = {
+    numbers: false,
+    lettersCountry: 'en',
+    lettersAll: false,
+    lettersCapital: false,
+    lettersLowercase: false,
+    minLength: undefined,
+    maxLength: undefined,
+    specialCharacters: '',
+    optional: false,
+    exact: '',
+  }
+
+  function checkOptions(options) {
+    if (typeof options.numbers !== 'boolean') { throw 'Option "numbers" should be boolean' }
+    if (typeof options.lettersCountry !== 'string') { throw 'Option "lettersCountry" should be string with country shortname' }
+    if (!LETTERS_BY_COUNTRY[options.lettersCountry]) { throw 'Sorry, the function does not support this country letters' }
+    if (typeof options.lettersAll !== 'boolean') { throw 'Option "lettersAll" should be boolean' }
+    if (typeof options.lettersCapital !== 'boolean') { throw 'Option "lettersCapital" should be boolean' }
+    if (typeof options.lettersLowercase !== 'boolean') { throw 'Option "lettersLowercase" should be boolean' }
+    const typeofMinLength = typeof options.minLength;
+    if (typeofMinLength !== 'undefined' && typeofMinLength !== 'number' && typeofMinLength !== 'string') { throw 'Option "minLength" should be undefined, number or string' }
+    const typeofMaxLength = typeof options.maxLength;
+    if (typeofMaxLength !== 'undefined' && typeofMaxLength !== 'number' && typeofMaxLength !== 'string') { throw 'Option "minLength" should be undefined, number or string' }
+    if (typeof options.specialCharacters !== 'string') { throw 'Option "specialCharacters" should be string' }
+    if (typeof options.optional !== 'boolean') { throw 'Option "optional" should be boolean' }
+    if (typeof options.exact !== 'string') { throw 'Option "exact" should be string' }
+  }
+
+  const optionsArray = Array.isArray(userOptions) ? userOptions : [userOptions];
+  const regexStringArray = optionsArray.map(optionsObj => {
+    const options = { ...IS_DEFAULT_OPTIONS, ...optionsObj };
+    if (checkOptionsInput) {
+      checkOptions(options);
+    }
+  
+    const numbers = options.numbers ? '0-9' : '';
+    const letters = `${options.lettersAll || options.lettersCapital ? LETTERS_BY_COUNTRY[options.lettersCountry].capital : ''}${options.lettersAll || options.lettersLowercase ? LETTERS_BY_COUNTRY[options.lettersCountry].lowercase : ''}`;
+    const length = options.exact ? '' : options.minLength === undefined && options.maxLength === undefined ? '*' : `{${options.minLength !== undefined ? options.minLength : 0},${options.maxLength !== undefined ? options.maxLength : ''}}`;
+    const characters = convertStringToUnicodes(options.specialCharacters);
+    const exactUpdated = options.exact ? convertStringToUnicodes(options.exact) : `[${numbers}${letters}${characters}]`;
+    const lengthUpdated = exactUpdated + length;
+    return options.optional ? `(${lengthUpdated})?` : lengthUpdated;
+  });
+  return new RegExp(`^${regexStringArray.join('')}$`);
+}
+
+function is(string, userOptions, checkOptionsInput) {
+  try {
+    if (typeof string !== 'string' || string.length < 1) {
+      throw 'The first argument should be not an empty string';
+    }
+    return createIs(userOptions, checkOptionsInput).test(string);
+  } catch (error) {
+    return error;
+  }
+}
+
 function isBearer(headerValue) {
   return /^Bearer [\s\S*]{1,}$/.test(headerValue);
 }
@@ -75,6 +161,8 @@ function isFacebookProfileUrl(url) {
 }
 
 module.exports = {
+  is,
+  createIs,
   isBearer,
   isUuid,
   isPassword,

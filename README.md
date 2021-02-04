@@ -1,6 +1,6 @@
 # Regexies
 
-The library includes a list of popular regex functions for every project usage. If you are lazy enough to create your own regular expressions or bored to move regex helper functions from project to project (like me) than Regexies is a good choise.
+The library includes a list of popular regex functions for every project usage. You can use special builder functions to create your own regexes.
 
 ## Install
 Install using npm:
@@ -55,7 +55,7 @@ Use this function to create your own regex and check a string. This function is 
 /**
  * @param  {String} string String to check
  * @param  {Object | Array} userOptions Option object or array of option objects
- * @param  {Boolean} checkOptionsInput Check or not type of option values, by default set to "false"
+ * @param  {Boolean} checkOptionsInput Check type of option values, by default set to "false"
  * @return {Boolean}
  */
 is(string, userOptions, checkOptionsInput)
@@ -125,7 +125,7 @@ const isCorrectPassword = isPassword('asdsa%&()=123') // true
 const isCorrectPassword = isPassword('!"§$%&a') // false (too short)
 const isCorrectPassword = isPassword('!"§$%&aasdasdajhdawzdgaw56789asdaskdjn?*+#,.;') // false (too long)
 ```
-You can extend current function changing min/max length and add your set of supported symbols
+You can extend current function changing min/max length and add your own set of supported symbols
 isPassword(password, minLength, maxLength, customSetOfSymbols)
 ```javascript
 const isCorrectPassword = isPassword('123abc', 5) // true
@@ -198,11 +198,11 @@ You can extend the list of supported extensions. Add array of custom extenstions
 ```javascript
 const isCorrectImageType = isImageMimetype('image/x-icon', ['png', 'jpeg', 'x-icon']) // true
 ```
-If you want to add support of "image/svg+xml" you need to add additional escapes as:
+If you want to add support of "image/svg+xml" you need to add additional escaping as:
 ```javascript
 const isCorrectImageType = isImageMimetype('image/svg+xml', ['png', 'jpeg', 'svg\\+xml']) // true
 ```
-:exclamation: Be careful, possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
+:exclamation: Be careful, the possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
 
 ### isAudioMimetype
 Verify MIME type of audio files using "isAudioMimetype" function. By default the function allows only "audio/mpeg".
@@ -276,7 +276,7 @@ const isCorrectProfileUrl = isLinkedInProfileUrl('https://www.linkedin.com/in/jo
 ### isFacebookProfileUrl
 Verify a Facebook profile URL using "isFacebookProfileUrl" function.  
 Optional: http, https, www, max length, slash at the end.  
-Strict: facebook.com, 5 symbols min length, can not include any specific characters except period.  
+Strict: facebook.com, 5 symbols min length, can not include any special characters except period.  
 ```javascript
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john.smith01/') // true
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john/') // false

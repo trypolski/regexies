@@ -170,7 +170,6 @@ describe('is', function() {
       assert.strictEqual(is('1231231***', { specialCharacters: '*' }), false);
     });
     it('Should return true if string includes slashes and numbers', function () {
-      console.log('test', '\\/')
       assert.strictEqual(is('91\\28\\22/32/', { specialCharacters: '\\/', numbers: true }), true);
     });
   });

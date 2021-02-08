@@ -7,19 +7,28 @@ const LETTERS_BY_COUNTRY = {
   fr: { lowercase: 'a-zàâçéèêëîïôûùüÿñæœ', capital: 'A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÆŒ' },
 }
 
-const CHARACTERS_TO_ESCAPE = '.^$*+?()[]{}\\|/-'
+const CHARACTERS_TO_ESCAPE = '.^$*+?()[]{}\\|/-';
+
+function escapeShort(s) {
+  let r = '';
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    r += CHARACTERS_TO_ESCAPE.indexOf(c) === -1 ? c : `\\${c}`;
+  }
+  return r;
+}
+
+function escapeLong(s) {
+	return s.replace(/[\.\^\$\*\+\?\(\)\[\]\{\}\\\|\/\-]/g, '\\$&');
+}
+
+function escape(s) {
+  return s.length > 60 ? escapeLong(s) : escapeShort(s);
+}
 
 function convertCharToUnicode(char) {
   const charHex = char.codePointAt(0).toString(16);
   return '\\u' + '0000'.substring(0, 4 - charHex.length) + charHex;
-}
-
-function convertStringToUnicodes(str, convertToUnicode) {
-  return str.split('').reduce((str, char) => {
-    const needToEscape = CHARACTERS_TO_ESCAPE.includes(char);
-    const updatedChar = convertToUnicode && needToEscape ? convertCharToUnicode(char) : needToEscape ? `\\${char}` : char;
-    return str + updatedChar;
-  }, '');
 }
 
 function createIs(userOptions = {}, checkOptionsInput = false) {
@@ -65,8 +74,8 @@ function createIs(userOptions = {}, checkOptionsInput = false) {
     const numbers = options.numbers ? '0-9' : '';
     const letters = `${options.lettersAll || options.lettersCapital ? LETTERS_BY_COUNTRY[options.lettersCountry].capital : ''}${options.lettersAll || options.lettersLowercase ? LETTERS_BY_COUNTRY[options.lettersCountry].lowercase : ''}`;
     const length = options.exact ? '' : options.minLength === undefined && options.maxLength === undefined ? '*' : `{${options.minLength !== undefined ? options.minLength : 0},${options.maxLength !== undefined ? options.maxLength : ''}}`;
-    const characters = convertStringToUnicodes(options.specialCharacters);
-    const exactUpdated = options.exact ? convertStringToUnicodes(options.exact) : `[${numbers}${letters}${characters}]`;
+    const characters = escape(options.specialCharacters);
+    const exactUpdated = options.exact ? escape(options.exact) : `[${numbers}${letters}${characters}]`;
     const lengthUpdated = exactUpdated + length;
     return options.optional ? `(${lengthUpdated})?` : lengthUpdated;
   });
@@ -180,5 +189,8 @@ module.exports = {
   isRomanNumber,
   isTwitterHandle,
   isLinkedInProfileUrl,
-  isFacebookProfileUrl
+  isFacebookProfileUrl,
+  escape,
+  escapeShort,
+  escapeLong
 }

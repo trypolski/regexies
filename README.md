@@ -30,6 +30,10 @@ Build your own regex using these functions:
 * [is](#is)
 * [createIs](#createIs)
 
+Escape special characters using these functions:
+* [escape](#escape)
+* [escapeShort and escapeLong](#escapeShort-and-escapeLong)
+
 Verify strings using these functions:  
 * [Email address](#isemail)
 * [Password](#ispassword)
@@ -110,6 +114,36 @@ Use this function to generate regex based on options. This function uses the sam
  */
 createIs(userOptions, checkOptionsInput)
 ```
+
+### escape
+Use this function to escape special characters that should be escaped in Regex. The function decides which function use **escapeShort** or **escapeLong** depends on length of the string.
+```javascript
+/**
+ * @param  {String} string String to escape
+ */
+escape(string) // .^$*+?()[]{}\|/- to \.\^\$\*\+\?\(\)\[\]\{\}\\\|\/\-
+```
+
+### escapeShort and escapeLong
+Use **escapeShort** to escape strings with length <= 60 and **escapeLong** for strings longer than 60 symbols.
+```javascript
+/**
+ * @param  {String} string String to escape
+ */
+escapeShort(string) // custom function with for loop
+escapeLong(string)  // string.replace(/[\.\^\$\*\+\?\(\)\[\]\{\}\\\|\/\-]/g, '\\$&');
+```
+There is no big difference if you want to escape single string, but if your task requires hundrets of iteration then the impact could be significant. Let's take a look at table with performance results:  
+| String length | Iterations    | escapeShort   | escapeLong    |
+| ------------- | ------------- | ------------- | ------------- |
+| 20            | 10k           | 7ms           | 7ms           |
+| 50            | 10k           | 7ms           | 10ms          |
+| 100           | 10k           | 13ms          | 11ms          |
+| 1000          | 10k           | 134ms         | 73ms          |
+| 20            | 100k          | 30ms          | 56ms          |
+| 50            | 100k          | 73ms          | 100ms         |
+| 100           | 100k          | 133ms         | 102ms         |
+| 1000          | 100k          | 1315ms        | 732ms         |
 
 ### isEmail
 Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.

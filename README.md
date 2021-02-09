@@ -116,7 +116,7 @@ createIs(userOptions, checkOptionsInput)
 ```
 
 ### escape
-Use this function to escape special characters that should be escaped in Regex. The function decides which function use **escapeShort** or **escapeLong** depends on length of the string.
+Use this function to escape special characters that should be escaped in Regex. The function decides which helper function to use **escapeShort** or **escapeLong** depends on length of the string.
 ```javascript
 /**
  * @param  {String} string String to escape
@@ -137,12 +137,12 @@ There is no big difference if you want to escape single string, but if your task
 | String length | Iterations    | escapeShort   | escapeLong    |
 | ------------- | ------------- | ------------- | ------------- |
 | 20            | 10k           | 7ms           | 7ms           |
-| 50            | 10k           | 7ms           | 10ms          |
-| 100           | 10k           | 13ms          | 11ms          |
-| 1000          | 10k           | 134ms         | 73ms          |
 | 20            | 100k          | 30ms          | 56ms          |
+| 50            | 10k           | 7ms           | 10ms          |
 | 50            | 100k          | 73ms          | 100ms         |
+| 100           | 10k           | 13ms          | 11ms          |
 | 100           | 100k          | 133ms         | 102ms         |
+| 1000          | 10k           | 134ms         | 73ms          |
 | 1000          | 100k          | 1315ms        | 732ms         |
 
 ### isEmail

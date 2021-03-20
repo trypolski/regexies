@@ -15,23 +15,23 @@ const escape = require('./escape');
   ]); // => /^http:\/\/www\.google\.com\/[a-z]*[\/]{1,1}([0-9]*)?$/
 */
 module.exports = function createIs(userOptions = {}, checkOptionsInput = false) {
-  if (typeof userOptions !== 'object' || (Array.isArray(userOptions) && userOptions.length === 0)) { throw 'The second argument (options) should be an object or of objects' }
-  if (typeof checkOptionsInput !== 'boolean') { throw 'The third argument should be a boolean' }
+  if (typeof userOptions !== 'object' || (Array.isArray(userOptions) && userOptions.length === 0)) { throw new TypeError('The second argument (options) should be an object or of objects') }
+  if (typeof checkOptionsInput !== 'boolean') { throw new TypeError('The third argument should be a boolean') }
 
   function checkOptions(options) {
-    if (typeof options.numbers !== 'boolean') { throw 'Option "numbers" should be boolean' }
-    if (typeof options.lettersCountry !== 'string') { throw 'Option "lettersCountry" should be string with country shortname' }
-    if (!LETTERS_BY_COUNTRY[options.lettersCountry]) { throw 'Sorry, the function does not support this country letters' }
-    if (typeof options.lettersAll !== 'boolean') { throw 'Option "lettersAll" should be boolean' }
-    if (typeof options.lettersCapital !== 'boolean') { throw 'Option "lettersCapital" should be boolean' }
-    if (typeof options.lettersLowercase !== 'boolean') { throw 'Option "lettersLowercase" should be boolean' }
+    if (typeof options.numbers !== 'boolean') { throw new TypeError('Option "numbers" should be boolean') }
+    if (typeof options.lettersCountry !== 'string') { throw new TypeError('Option "lettersCountry" should be string with country shortname') }
+    if (!LETTERS_BY_COUNTRY[options.lettersCountry]) { throw new TypeError('Sorry, the function does not support this country letters') }
+    if (typeof options.lettersAll !== 'boolean') { throw new TypeError('Option "lettersAll" should be boolean') }
+    if (typeof options.lettersCapital !== 'boolean') { throw new TypeError('Option "lettersCapital" should be boolean') }
+    if (typeof options.lettersLowercase !== 'boolean') { throw new TypeError('Option "lettersLowercase" should be boolean') }
     const typeofMinLength = typeof options.minLength;
-    if (typeofMinLength !== 'undefined' && typeofMinLength !== 'number' && typeofMinLength !== 'string') { throw 'Option "minLength" should be undefined, number or string' }
+    if (typeofMinLength !== 'undefined' && typeofMinLength !== 'number' && typeofMinLength !== 'string') { throw new TypeError('Option "minLength" should be undefined, number or string') }
     const typeofMaxLength = typeof options.maxLength;
-    if (typeofMaxLength !== 'undefined' && typeofMaxLength !== 'number' && typeofMaxLength !== 'string') { throw 'Option "minLength" should be undefined, number or string' }
-    if (typeof options.specialCharacters !== 'string') { throw 'Option "specialCharacters" should be string' }
-    if (typeof options.optional !== 'boolean') { throw 'Option "optional" should be boolean' }
-    if (typeof options.exact !== 'string') { throw 'Option "exact" should be string' }
+    if (typeofMaxLength !== 'undefined' && typeofMaxLength !== 'number' && typeofMaxLength !== 'string') { throw new TypeError('Option "minLength" should be undefined, number or string') }
+    if (typeof options.specialCharacters !== 'string') { throw new TypeError('Option "specialCharacters" should be string') }
+    if (typeof options.optional !== 'boolean') { throw new TypeError('Option "optional" should be boolean') }
+    if (typeof options.exact !== 'string') { throw new TypeError('Option "exact" should be string') }
   }
 
   const optionsArray = Array.isArray(userOptions) ? userOptions : [userOptions];

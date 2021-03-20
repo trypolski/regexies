@@ -4,42 +4,42 @@ const is = require('../index').is;
 describe('is', function() {
   describe('Arguments type errors', function () {
     it('Should return specific error message if first agrument type is incorrect', function () {
-      assert.strictEqual(is(undefined), 'The first argument should be not an empty string');
+      assert.throws(() => is(undefined), { name: 'TypeError', message: 'The first argument should be not an empty string' });
     });
     it('Should return specific error message if second agrument type is incorrect', function () {
-      assert.strictEqual(is('some string', []), 'The second argument (options) should be an object or of objects');
+      assert.throws(() => is('some string', []), { name: 'TypeError', message: 'The second argument (options) should be an object or of objects' });
     });
     it('Should return specific error message if third agrument type is incorrect', function () {
-      assert.strictEqual(is('some string', {}, 'true'), 'The third argument should be a boolean');
+      assert.throws(() => is('some string', {}, 'true'), { name: 'TypeError', message: 'The third argument should be a boolean' });
     });
   });
   describe('Options type errors', function () {
     it('Should return specific error message if option "number" has wrong type', function () {
-      assert.strictEqual(is('some string', { numbers: 'true' }, true), 'Option "numbers" should be boolean');
+      assert.throws(() => is('some string', { numbers: 'true' }, true), { name: 'TypeError', message: 'Option "numbers" should be boolean' });
     });
     it('Should return specific error message if option "lettersAll" has wrong type', function () {
-      assert.strictEqual(is('some string', { lettersAll: 'true' }, true), 'Option "lettersAll" should be boolean');
+      assert.throws(() => is('some string', { lettersAll: 'true' }, true), { name: 'TypeError', message: 'Option "lettersAll" should be boolean' });
     });
     it('Should return specific error message if option "lettersCountry" has wrong type', function () {
-      assert.strictEqual(is('some string', { lettersCountry: true }, true), 'Option "lettersCountry" should be string with country shortname');
+      assert.throws(() => is('some string', { lettersCountry: true }, true), { name: 'TypeError', message: 'Option "lettersCountry" should be string with country shortname' });
     });
     it('Should return specific error message if option "lettersCountry" has wrong value', function () {
-      assert.strictEqual(is('some string', { lettersCountry: 'somecountry' }, true), 'Sorry, the function does not support this country letters');
+      assert.throws(() => is('some string', { lettersCountry: 'somecountry' }, true), { name: 'TypeError', message: 'Sorry, the function does not support this country letters' });
     });
     it('Should return specific error message if option "lettersCapital" has wrong type', function () {
-      assert.strictEqual(is('some string', { lettersCapital: 0 }, true), 'Option "lettersCapital" should be boolean');
+      assert.throws(() => is('some string', { lettersCapital: 0 }, true), { name: 'TypeError', message: 'Option "lettersCapital" should be boolean' });
     });
     it('Should return specific error message if option "lettersCapital" has wrong type', function () {
-      assert.strictEqual(is('some string', { lettersLowercase: 1 }, true), 'Option "lettersLowercase" should be boolean');
+      assert.throws(() => is('some string', { lettersLowercase: 1 }, true), { name: 'TypeError', message: 'Option "lettersLowercase" should be boolean' });
     });
     it('Should return specific error message if option "specialCharacters" has wrong type', function () {
-      assert.strictEqual(is('some string', { specialCharacters: true }, true), 'Option "specialCharacters" should be string');
+      assert.throws(() => is('some string', { specialCharacters: true }, true), { name: 'TypeError', message: 'Option "specialCharacters" should be string' });
     });
     it('Should return specific error message if option "optional" has wrong type', function () {
-      assert.strictEqual(is('some string', { optional: 'true' }, true), 'Option "optional" should be boolean');
+      assert.throws(() => is('some string', { optional: 'true' }, true), { name: 'TypeError', message: 'Option "optional" should be boolean' });
     });
     it('Should return specific error message if option "exact" has wrong type', function () {
-      assert.strictEqual(is('some string', { exact: true }, true), 'Option "exact" should be string');
+      assert.throws(() => is('some string', { exact: true }, true), { name: 'TypeError', message: 'Option "exact" should be string' });
     });
   });
   describe('Only numbers', function () {

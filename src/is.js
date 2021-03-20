@@ -20,12 +20,8 @@ const createIs = require('./createIs');
     ]); // => false
  */
 module.exports = function is(string, userOptions, checkOptionsInput) {
-  try {
-    if (typeof string !== 'string' || string.length < 1) {
-      throw 'The first argument should be not an empty string';
-    }
-    return createIs(userOptions, checkOptionsInput).test(string);
-  } catch (error) {
-    return error;
+  if (typeof string !== 'string' || string.length < 1) {
+    throw new TypeError('The first argument should be not an empty string');
   }
+  return createIs(userOptions, checkOptionsInput).test(string);
 }

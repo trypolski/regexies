@@ -8,21 +8,35 @@ Install using npm:
 npm i regexies
 ```
 ## Import
-Import to your existing code:
+### Node.js
 ```javascript
-const regexies = require('regexies')
-or
-import regexies from 'regexies'
-
-regexies.isPassword('sometestpassword')
+const regexies = require('regexies');
+regexies.isPassword('sometestpassword');
+// or
+const isPassword = require('regexies').isPassword;
 ```
-Or import only functions you need:
+### ES6
 ```javascript
-const isPassword = require('regexies').isPassword
-or
-import { isPassword } from 'regexies'
+import regexies from 'regexies';
+regexies.isPassword('sometestpassword');
+// or
+import { isPassword } from 'regexies';
+```
+### Optimization
+Import only functions you need to reduce bundle size.  
+```javascript
+// Node.js
+const isPassword = require('regexies/src/isPassword');
+// ES6
+import isPassword from 'regexies/src/isPassword';
+```
 
-isPassword('sometestpassword')
+Use with [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import):
+```javascript
+{
+  "libraryName": "regexies",
+  "libraryDirectory": "src",
+}
 ```
 
 ## Documentation

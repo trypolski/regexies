@@ -66,6 +66,7 @@ Verify strings using these functions:
 * [Twitter handle](#istwitterhandle)
 * [LinkedIn public profile URL](#islinkedinprofileurl)
 * [Facebook public profile URL](#isfacebookprofileurl)
+* [Slug](#isslug)
 
 ### is
 Use this function to create your own regex and check a string. This function is a wrapper function for [createIs](#createIs) and build in method .test of Regex class. To make your code less expensive just use [createIs](#createIs) to generate regex.
@@ -92,6 +93,7 @@ const IS_DEFAULT_OPTIONS = {
   specialCharacters: '', // {String} set special characters in the string (escape "\"), the function automatically escapes needed characters
   optional: false, // {Boolean} mark a matching group as optional
   exact: '', // {String} put string that should exactly match, the function automatically escapes needed characters
+  range: '', // {String} put string that includes range to match (as '0-9', 'a-z'), the function doesn't automatically escape symbols
 }
 ```
 More about options:  
@@ -103,6 +105,7 @@ More countries will be added in the future, it just takes a lot of time to figur
 **maxLength** - if *minLength* value isn't set it will match from 0 to max.  
 **specialCharacters** - a string that includes all special characters like "'!?§$%&/". All characters will be automatically escaped by the function, but don't forget to escape "\" manually (specialCharacters: '\\' to add backslash).  
 **exact** - ignores all options except *optional*.  
+**range** - ignores other options, but *exact* has higher priority
 
 Example:
 ```javascript
@@ -328,6 +331,16 @@ Strict: facebook.com, 5 symbols min length, can not include any special characte
 ```javascript
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john.smith01/') // true
 const isCorrectProfileUrl = isFacebookProfileUrl('https://www.facebook.com/john/') // false
+```
+
+### isSlug
+Verify a slug from URL. Add custom separator using second argument ('-' by default). Add custom language using third argument (by default 'en'). It's better to avoid specific characters for latin letters, but sometimes it's the case. Supported languages: english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'.  
+Optional: a separator.  
+```javascript
+const isCorrectSlug = isSlug('word-and-word'); // => true
+const isCorrectSlug = isSlug('word_and_word', '_'); // => true
+const isCorrectSlug = isSlug('слово_и_слово', '_', 'ru'); // => true
+const isCorrectSlug = isSlug('1a234567ssd890.'); // => false
 ```
 
 ## Tests

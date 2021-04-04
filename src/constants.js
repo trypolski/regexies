@@ -9,6 +9,7 @@ const IS_DEFAULT_OPTIONS = {
   specialCharacters: '',
   optional: false,
   exact: '',
+  range: '',
 }
 
 const LETTERS_BY_COUNTRY = {

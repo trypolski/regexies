@@ -41,6 +41,9 @@ describe('is', function() {
     it('Should return specific error message if option "exact" has wrong type', function () {
       assert.throws(() => is('some string', { exact: true }, true), { name: 'TypeError', message: 'Option "exact" should be string' });
     });
+    it('Should return specific error message if option "range" has wrong type', function () {
+      assert.throws(() => is('some string', { range: true }, true), { name: 'TypeError', message: 'Option "range" should be string' });
+    });
   });
   describe('Only numbers', function () {
     it('Should return true for string with only numbers and no length restrictions', function () {
@@ -179,6 +182,14 @@ describe('is', function() {
     });
     it('Should return false if string does not match exact value', function () {
       assert.strictEqual(is('http://', { exact: 'https://' }), false);
+    });
+  });
+  describe('Range', function () {
+    it('Should return true if string match value in specific range', function () {
+      assert.strictEqual(is('56789', { range: '5-9' }), true);
+    });
+    it('Should return false if string does not match value in specific range', function () {
+      assert.strictEqual(is('01234', { range: '5-9' }), false);
     });
   });
   describe('Array of options', function () {

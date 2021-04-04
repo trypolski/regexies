@@ -13,6 +13,9 @@ const escape = require('./escape');
     { specialCharacters: '/', minLength: 1, maxLength: 1 },
     { numbers: true, optional: true }
   ]); // => /^http:\/\/www\.google\.com\/[a-z]*[\/]{1,1}([0-9]*)?$/
+    * createIs([
+    { range: '0-5' },
+  ]); // => /^[0-5]$/
 */
 module.exports = function createIs(userOptions = {}, checkOptionsInput = false) {
   if (typeof userOptions !== 'object' || (Array.isArray(userOptions) && userOptions.length === 0)) { throw new TypeError('The second argument (options) should be an object or of objects') }
@@ -32,6 +35,7 @@ module.exports = function createIs(userOptions = {}, checkOptionsInput = false) 
     if (typeof options.specialCharacters !== 'string') { throw new TypeError('Option "specialCharacters" should be string') }
     if (typeof options.optional !== 'boolean') { throw new TypeError('Option "optional" should be boolean') }
     if (typeof options.exact !== 'string') { throw new TypeError('Option "exact" should be string') }
+    if (typeof options.range !== 'string') { throw new TypeError('Option "range" should be string') }
   }
 
   const optionsArray = Array.isArray(userOptions) ? userOptions : [userOptions];
@@ -45,7 +49,7 @@ module.exports = function createIs(userOptions = {}, checkOptionsInput = false) 
     const letters = `${options.lettersAll || options.lettersCapital ? LETTERS_BY_COUNTRY[options.lettersCountry].capital : ''}${options.lettersAll || options.lettersLowercase ? LETTERS_BY_COUNTRY[options.lettersCountry].lowercase : ''}`;
     const length = options.exact ? '' : options.minLength === undefined && options.maxLength === undefined ? '*' : `{${options.minLength !== undefined ? options.minLength : 0},${options.maxLength !== undefined ? options.maxLength : ''}}`;
     const characters = escape(options.specialCharacters);
-    const exactUpdated = options.exact ? escape(options.exact) : `[${numbers}${letters}${characters}]`;
+    const exactUpdated = options.exact ? escape(options.exact) : options.range ? `[${options.range}]` : `[${numbers}${letters}${characters}]`;
     const lengthUpdated = exactUpdated + length;
     return options.optional ? `(${lengthUpdated})?` : lengthUpdated;
   });

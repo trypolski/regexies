@@ -1,0 +1,93 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+  &.column {
+    .form-wrapper-partial {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &.row {
+    .form-wrapper-partial {
+      display: flex;
+      flex-direction: row;
+      .form-element-wrapper {
+        margin-right: 16px;
+        padding-bottom: 0;
+        :last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .form-wrapper-error {
+    display: none;
+    font-size: 14px;
+    color: $red;
+  }
+
+  &.has-error {
+    .form-wrapper-error {
+      display: block;
+    }
+  }
+}
+
+.form-element-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+
+  > * {
+    margin-bottom: 8px;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  .form-element-error {
+    display: none;
+    font-size: 14px;
+    color: $red;
+  }
+
+  &.has-error {
+    .form-element-error {
+      display: block;
+    }
+  
+    .input-text,
+    .input-number {
+      border-color: $red;
+      color: $red
+    }
+  }
+}
+
+.input-text,
+.input-number {
+  height: 40px;
+  color: $primary;
+  font-size: 16px;
+  font-family: $roboto;
+  border: 1px solid $primary-bg;
+  border-radius: 8px;
+  background-color: $white;
+  transition: all 0.3s linear;
+  max-width: 400px;
+}
+
+.input-text {
+  padding-left: 16px;
+}
+
+.input-number {
+  padding: 0 16px;
+  max-width: 80px;
+}

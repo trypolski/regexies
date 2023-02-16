@@ -1,0 +1,19 @@
+{{!-- 
+  Form element wrapper
+  @id (string): text for id value
+  @hideLabel (boolean): show or not label for an input element
+  @labelText (string): text of input label
+  @hideError (boolean): show or not error container
+  @errorText (string): error message
+--}}
+<div class="form-element-wrapper" form-element-wrapper>
+  {{#unless hideLabel}}
+    <label for="{{#if id}}{{id}}{{/if}}" class="form-element-label">{{labelText}}</label>
+  {{/unless}}
+  {{> @partial-block}}
+  {{#unless hideError}}
+    <div class="form-element-error" form-element-error form-default-error-message="{{errorText}}">
+      {{errorText}}
+    </div>
+  {{/unless}}
+</div>

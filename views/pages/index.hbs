@@ -6,5 +6,94 @@
 }}
   <main>
     <h1>Regexies</h1>
+    {{!-- isEmail function example --}}
+    {{#> content-container/content-container
+      titleId="isEmail"
+      title="isEmail"
+    }}
+      <p>Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.</p>
+      {{#> forms/form-element-wrapper
+        id="email-example"
+        labelText="Enter an email"
+        errorText="Please enter correct email address"
+      }}
+        {{> forms/input-text
+          dataAction="match-email"
+          id="email-example"
+          placeholderText="email@site.com"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- isPassword function example --}}
+    {{#> content-container/content-container
+      titleId="isPassword"
+      title="isPassword"
+    }}
+      <p>Verify passwords using "isPassword" function. By default password's length should be 8-30 and !"§$%&()=?*+#,.;:_- are allowed symbols.</p>
+      {{#> forms/form-element-wrapper
+        id="password-default-example"
+        labelText="Enter a password"
+        errorText="Password's length should be 8-30 and !\"§$%&()=?*+#,.;:_- are allowed symbols"
+      }}
+        {{> forms/input-text
+          dataAction="match-default-password"
+          id="password-default-example"
+          placeholderText="Password"
+        }}
+      {{/forms/form-element-wrapper}}
+      {{!-- Custom password options --}}
+      <p>Create your own password using min/max length and allowed symbols options.</p>
+      {{#> forms/form-wrapper
+        dataAction="custom-password-form"
+        isRow=true
+      }}
+        {{#> forms/form-element-wrapper
+          id="min-length-custom-password"
+          labelText="Min length"
+          hideError=true
+        }}
+          {{> forms/input-number
+            id="min-length-custom-password"
+            name="minLengthPassword"
+            min=1
+            value=8
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="max-length-custom-password"
+          labelText="Max length"
+          hideError=true
+        }}
+          {{> forms/input-number
+            id="max-length-custom-password"
+            name="maxLengthPassword"
+            min=2
+            value=16
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="allowed-characters-custom-password"
+          labelText="Special characters"
+        }}
+          {{> forms/input-text
+            id="allowed-characters-custom-password"
+            name="specialCharactersPassword"
+            placeholderText="Enter allowed charachters"
+            value="!\"§$%&()=?*+#,.;:_-"
+          }}
+        {{/forms/form-element-wrapper}}
+      {{/forms/form-wrapper}}
+      {{#> forms/form-element-wrapper
+        id="password-custom-example"
+        labelText="Test a custom password"
+        errorText="Password's length should be between {min}-{max} and {character} are allowed symbols"
+      }}
+        {{> forms/input-text
+          dataAction="match-custom-password"
+          id="password-custom-example"
+          placeholderText="Custom password"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
   </main>
 {{/decorators/page}}

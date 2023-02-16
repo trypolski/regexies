@@ -1,0 +1,23 @@
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+
+  h2 {
+    &:hover {
+      .content-title-link {
+        visibility: visible;
+      }
+    }
+
+    .content-title-link {
+      visibility: hidden;
+      font-size: 32px;
+      font-weight: 400;
+      text-decoration: none;
+      &:hover {
+        visibility: visible;
+      }
+    }
+  }
+}

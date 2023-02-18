@@ -1,0 +1,52 @@
+@import '../../styles/colors.scss';
+
+.has-sidebar {
+  display: flex;
+  flex-direction: row;
+  main {
+    display: flex;
+    flex-direction: column;
+    margin-left: 208px;
+  }
+}
+
+nav {
+  position: fixed;
+  width: 160px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  strong {
+    display: flex;
+    padding-bottom: 8px;
+  }
+  
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li.navigation-item {
+      padding-bottom: 24px;
+      ul {
+        li {
+          border-radius: 8px;
+          line-height: 40px;
+          &.active {
+            background-color: $primary-bg;
+          }
+        }
+      }
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-left: 16px;
+      text-decoration: none;
+    }
+  }
+}

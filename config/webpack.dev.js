@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     open: true,
-    watchFiles: [path.resolve(__dirname, "../views/pages/**/index.hbs")],
+    watchFiles: [path.resolve(__dirname, "../views/**/**/*.hbs")],
     static: {
       directory: path.join(__dirname, '../views/assets'),
       publicPath: '/public/assets',

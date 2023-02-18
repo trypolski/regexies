@@ -4,6 +4,9 @@ import {
   showError,
   initMatchTextInputs
 } from '../components/forms/forms';
+import {
+  initNavigation
+} from '../components/navigation/navigation';
 
 let customPasswordOptions = {
   minLengthPassword: '8',
@@ -12,6 +15,7 @@ let customPasswordOptions = {
 }
 
 function handleCustomPasswordInput(eventOrElement) {
+  initNavigation();
   const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
   const value = input.value;
   const minLengthPassword = Number(customPasswordOptions.minLengthPassword);

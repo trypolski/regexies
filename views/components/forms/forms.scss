@@ -13,6 +13,7 @@
   }
   &.row {
     .form-wrapper-partial {
+      width: 100%;
       display: flex;
       flex-direction: row;
       .form-element-wrapper {
@@ -75,7 +76,7 @@
   height: 40px;
   color: $primary;
   font-size: 16px;
-  font-family: $roboto;
+  font-family: $lato;
   border: 1px solid $primary-bg;
   border-radius: 8px;
   background-color: $white;

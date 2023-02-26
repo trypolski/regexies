@@ -8,6 +8,7 @@
 class FormManager {
   constructor(options) {
     this.form = options.form;
+    this.initialData = options.initialData || {};
     this._formData_ = options.initialData || {};
     this.options = options;
   }
@@ -17,21 +18,44 @@ class FormManager {
   }
 
   set formData (formElement) {
+    const value = formElement.type === 'checkbox' ? formElement.checked : formElement.value;
     this._formData_ = {
       ...this._formData_,
-      [formElement.name]: formElement.value
+      [formElement.name]: value
     }
+  }
+
+  updateFormElements = (elements) => {
+    elements.forEach(element => {
+      this.formData = element;
+    });
+    this.options.onDataChange && this.options.onDataChange(this._formData_);
+  }
+
+  updateFormElement = (element) => {
+    this.formData = element;
+    this.options.onDataChange && this.options.onDataChange(this._formData_);
   }
 
   onFormChange = (event) => {
     const formElement = event.target;
     this.formData = formElement;
-    this.options.onDataChange(this._formData_);
+    this.options.onDataChange && this.options.onDataChange(this._formData_);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.options.onSubmit && this.options.onSubmit(this._formData_);
   }
 
   init = () => {
-    this.form.addEventListener('change', this.onFormChange);
+    this.form.addEventListener('input', this.onFormChange);
+    this.form.addEventListener('submit', this.onSubmit);
   };
+
+  reset = () => {
+    this._formData_ = this.initialData;
+  }
 }
 
 // Class to handle basic form functionality

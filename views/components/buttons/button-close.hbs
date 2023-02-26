@@ -1,0 +1,13 @@
+{{!-- 
+  Close button
+  @dataAction (string): text for data-action attribute
+  @classNames (string): additional CSS classes
+  @disabled (boolean): make a button disabled
+  @title (string): add default popup text for a button
+--}}
+<button
+  class="button-close {{classNames}}"
+  {{#if dataAction}}data-action="{{dataAction}}"{{/if}}
+  {{#if title}}title="{{title}}"{{/if}}
+  {{#if disabled}}disabled{{/if}}
+></button>

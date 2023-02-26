@@ -1,11 +1,11 @@
 {{!-- 
   Form wrapper
-  @classNames (string): additional classes for form element
+  @formClassNames (string): additional classes for form element
   @dataAction (string): text for data-action attribute
   @errorText (string): error message
   @isRow (boolean): show forum content as column or row
 --}}
-<form class="form-wrapper{{#if isRow}} row{{else}} column{{/if}}{{#if classNames}} {{classNames}}{{/if}}" data-action="{{dataAction}}">
+<form class="form-wrapper{{#if isRow}} row{{else}} column{{/if}}{{#if formClassNames}} {{formClassNames}}{{/if}}" data-action="{{dataAction}}">
   <div class="form-wrapper-partial">
     {{> @partial-block}}
   </div>

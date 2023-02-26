@@ -1,21 +1,30 @@
+const navigationLinkWrappers = document.querySelectorAll('[data-action="navigation-link-wrapper"]');
+
 function initNavigation() {
-  const navigationLinks = document.querySelectorAll('[data-action="navigation-link-wrapper"]');
   const hash = window.location.hash;
-  navigationLinks.forEach(link => {
+  navigationLinkWrappers.forEach(link => {
     if (hash && link.getAttribute('data-nav-url') === hash) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
     }
-    link.addEventListener('click', () => {
-      navigationLinks.forEach(navigationLink => {
-        if (link === navigationLink) {
-          navigationLink.classList.add('active');
-        } else {
-          navigationLink.classList.remove('active');
-        }
-      });
-    });
+    link.addEventListener('click', handleNavigationLinkClick);
+  });
+  const titleLinks = document.querySelectorAll('[data-action="content-title-link"]');
+  titleLinks.forEach(titleLink => {
+    titleLink.addEventListener('click', handleNavigationLinkClick);
+  });
+}
+
+function handleNavigationLinkClick(e) {
+  const newHash = e.target.dataset.navUrl;
+  navigationLinkWrappers.forEach(navigationLink => {
+    const linkHash = navigationLink.dataset.navUrl;
+    if (linkHash === newHash) {
+      navigationLink.classList.add('active');
+    } else {
+      navigationLink.classList.remove('active');
+    }
   });
 }
 

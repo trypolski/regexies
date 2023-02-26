@@ -1,12 +1,221 @@
 {{#> decorators/page
-  title="Regexies"
+  title="Regexies documentation"
   description="The library includes a list of popular regex functions for every project usage. You can use special builder functions to create your own regexes."
   keywords="regular, expressions, regex, regexp, match, regular expressions, js regex, javascript regex"
   pathToPublic="./public"
 }}
   <main>
-    <h1>Regexies</h1>
-    {{!-- isEmail function example --}}
+    <h1>Regexies documentation</h1>
+    {{!-- 
+      createIs function example
+    --}}
+    {{#> content-container/content-container
+      titleId="createIs"
+      title="createIs"
+    }}
+      <p>This function generates regex based on options. This function uses the same option parameters as <a href="#is" data-nav-url="#is" data-action="content-title-link">is</a> function.</p>
+      <p>To test the "createIs" you can use our rules constructor with up to 5 rules (this restriction applies only for the demo, current function implementation has no limits):</p>
+      <div class="mb-16" data-action="create-is-rules-list"></div>
+      <div class="create-is-rule-item hidden bordered px-16 py-8 my-8" data-action="create-is-rule-item-example">
+        <span>Rule id: <span data-action="create-is-rule-item-index"></span></span>
+        {{> buttons/button-close
+          title="Delete rule"
+          dataAction="create-is-delete-rule"
+        }}
+      </div>
+      {{> buttons/button
+        text="Add a rule"
+        dataAction="create-is-add-rule"
+      }}
+      {{!-- Add createIs rule form --}}
+      {{#> forms/form-wrapper
+        formClassNames="hidden bordered my-16"
+        dataAction="create-is-form"
+      }}
+        <div class="flex-row">
+          {{!-- createIs -> Allow numbers checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-number"
+            labelText="Allow numbers"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              id="create-is-number"
+              name="numbers"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Optional checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-optional"
+            labelText="Rules are optional"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              id="create-is-optional"
+              name="optional"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row">
+          {{!-- createIs -> Allow upper/lowercase letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-all"
+            labelText="Allow capital/lowercase letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-all"
+              name="lettersAll"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Allow capital letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-capital"
+            labelText="Allow capital letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-capital"
+              name="lettersCapital"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Allow lowercase letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-lowercase"
+            labelText="Allow lowercase letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-lowercase"
+              name="lettersLowercase"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row">
+          {{!-- createIs -> Language select --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-language"
+            labelText="Allow letters by language"
+            hideError=true
+          }}
+            {{#> forms/select
+              id="create-is-number"
+              name="lettersCountry"
+              value="en"
+            }}
+              <option value="en">English</option>
+              <option value="de">German</option>
+              <option value="es">Spanish</option>
+              <option value="ru">Russian</option>
+              <option value="ua">Ukrainian</option>
+              <option value="fr">French</option>
+            {{/forms/select}}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Min length input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-min-length"
+            labelText="Min length"
+            hideError=true
+          }}
+            {{> forms/input-number
+              id="create-is-min-length"
+              name="minLength"
+              min=1
+              value=undefined
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Max length input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-min-length"
+            labelText="Max length"
+            hideError=true
+          }}
+            {{> forms/input-number
+              id="create-is-min-length"
+              name="maxLength"
+              min=2
+              value=undefined
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Special characters input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-special-characters"
+            labelText="Special characters"
+          }}
+            {{> forms/input-text
+              id="create-is-special-characters"
+              name="specialCharacters"
+              placeholderText="Enter special charachters"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row">
+          {{!-- createIs -> Exact match input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-exact"
+            labelText="Exactly match string"
+          }}
+            {{> forms/input-text
+              id="create-is-exact"
+              name="exact"
+              placeholderText="Enter a text"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Regex range input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-range"
+            labelText="Regex range"
+          }}
+            {{> forms/input-text
+              id="create-is-range"
+              name="range"
+              placeholderText="Enter a range as 0-9 or a-z"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row">
+          {{> buttons/button
+            classNames="primary mr-16"
+            text="Save"
+            dataAction="create-is-save-rule"
+          }}
+          {{> buttons/button
+            text="Cancel"
+            dataAction="create-is-cancel-rule"
+          }}
+        </div>
+      {{/forms/form-wrapper}}
+      <p class="pt-24">Test your custom createIs regex <span data-action="create-is-regex"></span> created using rules above.</p>
+      {{#> forms/form-element-wrapper
+        id="create-is-example"
+        labelText="Enter some text here"
+        errorText="A string doesn't match your created regex"
+      }}
+        {{> forms/input-text
+          dataAction="create-is-example"
+          id="create-is-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isEmail function example 
+    --}}
     {{#> content-container/content-container
       titleId="isEmail"
       title="isEmail"
@@ -24,11 +233,14 @@
         }}
       {{/forms/form-element-wrapper}}
     {{/content-container/content-container}}
-    {{!-- isPassword function example --}}
+    {{!-- 
+      isPassword function example
+    --}}
     {{#> content-container/content-container
       titleId="isPassword"
       title="isPassword"
     }}
+      <h3 class="pt-16">Default password function</h3>
       <p>Verify passwords using "isPassword" function. By default password's length should be 8-30 and !"§$%&()=?*+#,.;:_- are allowed symbols.</p>
       {{#> forms/form-element-wrapper
         id="password-default-example"
@@ -41,12 +253,16 @@
           placeholderText="Password"
         }}
       {{/forms/form-element-wrapper}}
-      {{!-- Custom password options --}}
+      {{!-- 
+        Custom password options
+      --}}
+      <h3>Custom password function</h3>
       <p>Create your own password using min/max length and allowed symbols options.</p>
       {{#> forms/form-wrapper
         dataAction="custom-password-form"
         isRow=true
       }}
+        {{!-- isPassword custom -> Min input --}}
         {{#> forms/form-element-wrapper
           id="min-length-custom-password"
           labelText="Min length"
@@ -59,6 +275,7 @@
             value=8
           }}
         {{/forms/form-element-wrapper}}
+        {{!-- isPassword custom -> Max input --}}
         {{#> forms/form-element-wrapper
           id="max-length-custom-password"
           labelText="Max length"
@@ -71,6 +288,7 @@
             value=16
           }}
         {{/forms/form-element-wrapper}}
+        {{!-- isPassword custom -> Special characters input --}}
         {{#> forms/form-element-wrapper
           id="allowed-characters-custom-password"
           labelText="Special characters"
@@ -83,6 +301,7 @@
           }}
         {{/forms/form-element-wrapper}}
       {{/forms/form-wrapper}}
+      {{!-- isPassword custom -> Test custom password input --}}
       {{#> forms/form-element-wrapper
         id="password-custom-example"
         labelText="Test a custom password"

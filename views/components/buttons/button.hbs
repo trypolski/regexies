@@ -1,0 +1,21 @@
+{{!-- 
+  Button
+  @text (string): text inside button
+  @hasContent (boolean): show partial content instead of a text
+  @dataAction (string): text for data-action attribute
+  @classNames (string): additional CSS classes
+  @disabled (boolean): make a button disabled
+  @title (string): add default popup text for a button
+--}}
+<button
+  class="button {{classNames}}"
+  {{#if dataAction}}data-action="{{dataAction}}"{{/if}}
+  {{#if title}}title="{{title}}"{{/if}}
+  {{#if disabled}}disabled{{/if}}
+>
+  {{#unless hasContent}}
+    {{text}}
+  {{else}}
+    {{> @partial-block}}
+  {{/unless}}
+</button>

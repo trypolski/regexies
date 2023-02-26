@@ -9,6 +9,12 @@
     .form-wrapper-partial {
       display: flex;
       flex-direction: column;
+
+      .flex-row {
+        .form-element-wrapper {
+          margin-right: 16px;
+        }
+      }
     }
   }
   &.row {
@@ -19,9 +25,6 @@
       .form-element-wrapper {
         margin-right: 16px;
         padding-bottom: 0;
-        :last-child {
-          margin-right: 0;
-        }
       }
     }
   }
@@ -37,6 +40,12 @@
       display: block;
     }
   }
+
+  &.bordered {
+    padding: 24px;
+    border: 1px solid $primary-bg;
+    border-radius: 8px;
+  }
 }
 
 .form-element-wrapper {
@@ -50,6 +59,17 @@
 
   :last-child {
     margin-bottom: 0;
+  }
+
+  &.row {
+    flex-direction: row;
+    > * {
+      margin-right: 8px;
+    }
+  
+    :last-child {
+      margin-right: 0;
+    }
   }
 
   .form-element-error {
@@ -72,7 +92,8 @@
 }
 
 .input-text,
-.input-number {
+.input-number,
+.form-select {
   height: 40px;
   color: $primary;
   font-size: 16px;
@@ -86,6 +107,12 @@
 
 .input-text {
   padding-left: 16px;
+  width: 200px;
+}
+
+.form-select {
+  padding-left: 8px;
+  max-width: 184px;
 }
 
 .input-number {

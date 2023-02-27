@@ -213,6 +213,25 @@
         }}
       {{/forms/form-element-wrapper}}
     {{/content-container/content-container}}
+    {{!--
+      escape function example
+    --}}
+    {{#> content-container/content-container
+      titleId="escape"
+      title="Escape"
+    }}
+      <p>Use this function to escape special characters that should be escaped in Regex. The function decides which helper function to use escapeShort or escapeLong depends on length of the string.</p>
+      <p><strong>Result: </strong><span data-action="escape-example-result"></span></p>
+      {{#> forms/form-element-wrapper
+        id="escape-example"
+        labelText="Enter some special characters"
+      }}
+        {{> forms/input-text
+          dataAction="escape-example-input"
+          id="escape-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
     {{!-- 
       isEmail function example 
     --}}

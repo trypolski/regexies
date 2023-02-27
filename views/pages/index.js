@@ -113,10 +113,12 @@ function handleCustomCreateIsInput(eventOrElement) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Navigation
   initNavigation();
+  // Email example
   const emailInputs = document.querySelectorAll('[data-action="match-email"]');
   initMatchTextInputs(emailInputs, regexies.isEmail);
-
+  // Password examples
   const passwordDefaultInput = document.querySelectorAll('[data-action="match-default-password"]');
   initMatchTextInputs(passwordDefaultInput, regexies.isPassword);
 
@@ -147,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const customPasswordForm = new FormManager(customPasswordFormOptions);
   customPasswordForm.init();
 
+  // CreateIs function constructor
   const createIsFormElement = document.querySelector('[data-action="create-is-form"]');
   const createIsFormOptions = {
     form: createIsFormElement,
@@ -197,5 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
       createIsLettersAllCheckbox.checked = createIsLettersCapitalCheckbox.checked && createIsLettersLowercaseCheckbox.checked;
       createIsForm.updateFormElement(createIsLettersAllCheckbox);
     });
+  });
+
+  // Escape example
+  const escapeInput = document.querySelector('[data-action="escape-example-input"]');
+  const escapeResultSpan = document.querySelector('[data-action="escape-example-result"]');
+  escapeInput.addEventListener('input', (event) => {
+    const value = event.target.value;
+    const escapedString = regexies.escape(value);
+    escapeResultSpan.innerText = escapedString;
   });
 }, false);

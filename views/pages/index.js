@@ -112,6 +112,42 @@ function handleCustomCreateIsInput(eventOrElement) {
   }
 }
 
+function handleUuidInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const onlyV4 = input.dataset.onlyV4 === 'true';
+    const isMatch = regexies.isUuid(value, onlyV4);
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleUrlInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const optionalProtocol = input.dataset.optionalProtocol === 'true';
+    const isMatch = regexies.isUrl(value, !optionalProtocol);
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleHexColorInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const optionalHash = input.dataset.optionalHash === 'true';
+    const isMatch = regexies.isHexColor(value, !optionalHash);
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Navigation
   initNavigation();
@@ -209,5 +245,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const value = event.target.value;
     const escapedString = regexies.escape(value);
     escapeResultSpan.innerText = escapedString;
+  });
+
+  // UUID example
+  const uuidInput = document.querySelector('[data-action="match-uuid"]');
+  const uuidV4Checkbox = document.querySelector('[data-action="match-uuid-v4"]');
+  uuidInput.addEventListener('input', handleUuidInput);
+  uuidV4Checkbox.addEventListener('input', (event) => {
+    uuidInput.dataset.onlyV4 = event.target.checked ? 'true' : 'false';
+    handleUuidInput(uuidInput);
+  });
+
+  // Bearer example
+  const bearerInput = document.querySelectorAll('[data-action="match-bearer-token"]');
+  initMatchTextInputs(bearerInput, regexies.isBearer);
+
+  // JWT example
+  const jwtInput = document.querySelectorAll('[data-action="match-jwt-token"]');
+  initMatchTextInputs(jwtInput, regexies.isJwt);
+
+  // Url example
+  const urlInput = document.querySelector('[data-action="match-url"]');
+  const urlOptionalProtocolCheckbox = document.querySelector('[data-action="match-url-protocol"]');
+  urlInput.addEventListener('input', handleUrlInput);
+  urlOptionalProtocolCheckbox.addEventListener('input', (event) => {
+    urlInput.dataset.optionalProtocol = event.target.checked ? 'true' : 'false';
+    handleUrlInput(urlInput);
+  });
+
+  // Hex color example
+  const hexColorInput = document.querySelector('[data-action="match-hex-color"]');
+  const hexColorHashCheckbox = document.querySelector('[data-action="match-hex-color-hash"]');
+  hexColorInput.addEventListener('input', handleHexColorInput);
+  hexColorHashCheckbox.addEventListener('input', (event) => {
+    hexColorInput.dataset.optionalHash = event.target.checked ? 'true' : 'false';
+    handleHexColorInput(hexColorInput);
   });
 }, false);

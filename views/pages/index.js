@@ -148,6 +148,62 @@ function handleHexColorInput(eventOrElement) {
   }
 }
 
+function createMimeTypesList (mimeTypesString) {
+  if (mimeTypesString) {
+    return mimeTypesString.replace(' ', '').split(',');
+  }
+}
+
+function handleImageMimeTypeInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const isMatch = regexies.isImageMimetype(value, createMimeTypesList(additionalMimeTypes));
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleAudioMimeTypeInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const isMatch = regexies.isAudioMimetype(value, createMimeTypesList(additionalMimeTypes));
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleVideoMimeTypeInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const isMatch = regexies.isVideoMimetype(value, createMimeTypesList(additionalMimeTypes));
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleMimeTypeInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const mimeTypePrefix = input.dataset.prefixMimeTypes;
+    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const preparedMimeTypes = additionalMimeTypes ? createMimeTypesList(additionalMimeTypes) : [];
+    const isMatch = regexies.isMimetype(value, mimeTypePrefix, preparedMimeTypes);
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Navigation
   initNavigation();
@@ -280,5 +336,48 @@ document.addEventListener('DOMContentLoaded', () => {
   hexColorHashCheckbox.addEventListener('input', (event) => {
     hexColorInput.dataset.optionalHash = event.target.checked ? 'true' : 'false';
     handleHexColorInput(hexColorInput);
+  });
+
+  // Image MIME type
+  const imageMimeTypeInput = document.querySelector('[data-action="match-image-mimetype"]');
+  const imageMimeTypeAdditionalInput = document.querySelector('[data-action="match-image-mimetype-additional"]');
+  imageMimeTypeInput.addEventListener('input', handleImageMimeTypeInput);
+  imageMimeTypeAdditionalInput.addEventListener('input', (event) => {
+    imageMimeTypeInput.dataset.additionalMimeTypes = event.target.value;
+    handleImageMimeTypeInput(imageMimeTypeInput);
+  });
+
+  // Audio MIME type
+  const audioMimeTypeInput = document.querySelector('[data-action="match-audio-mimetype"]');
+  const audioMimeTypeAdditionalInput = document.querySelector('[data-action="match-audio-mimetype-additional"]');
+  audioMimeTypeInput.addEventListener('input', handleAudioMimeTypeInput);
+  audioMimeTypeAdditionalInput.addEventListener('input', (event) => {
+    audioMimeTypeInput.dataset.additionalMimeTypes = event.target.value;
+    handleAudioMimeTypeInput(audioMimeTypeInput);
+  });
+
+  // Video MIME type
+  const videoMimeTypeInput = document.querySelector('[data-action="match-video-mimetype"]');
+  const videoMimeTypeAdditionalInput = document.querySelector('[data-action="match-video-mimetype-additional"]');
+  videoMimeTypeInput.addEventListener('input', handleVideoMimeTypeInput);
+  videoMimeTypeAdditionalInput.addEventListener('input', (event) => {
+    videoMimeTypeInput.dataset.additionalMimeTypes = event.target.value;
+    handleVideoMimeTypeInput(videoMimeTypeInput);
+  });
+
+  // MIME type
+  const mimeTypeInput = document.querySelector('[data-action="match-mimetype"]');
+  const mimeTypePrefixInput = document.querySelector('[data-action="match-mimetype-prefix"]');
+  const mimeTypeAdditionalInput = document.querySelector('[data-action="match-mimetype-additional"]');
+  mimeTypeInput.dataset.prefixMimeTypes = mimeTypePrefixInput.value;
+  mimeTypeInput.dataset.additionalMimeTypes = createMimeTypesList(mimeTypeAdditionalInput.value);
+  mimeTypeInput.addEventListener('input', handleMimeTypeInput);
+  mimeTypePrefixInput.addEventListener('input', (event) => {
+    mimeTypeInput.dataset.prefixMimeTypes = event.target.value;
+    handleMimeTypeInput(mimeTypeInput);
+  });
+  mimeTypeAdditionalInput.addEventListener('input', (event) => {
+    mimeTypeInput.dataset.additionalMimeTypes = event.target.value;
+    handleMimeTypeInput(mimeTypeInput);
   });
 }, false);

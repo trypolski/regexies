@@ -576,17 +576,17 @@
           }}
         {{/forms/form-element-wrapper}}
         {{#> forms/form-element-wrapper
+          id="url-protocol-example"
+          labelText="Make http:// and https:// optional "
+          hideError=true
+        }}
+          {{> forms/input-checkbox
+            dataAction="match-url-protocol"
             id="url-protocol-example"
-            labelText="Make http:// and https:// optional "
-            hideError=true
+            name="url-protocol"
+            checked=false
           }}
-            {{> forms/input-checkbox
-              dataAction="match-url-protocol"
-              id="url-protocol-example"
-              name="url-protocol"
-              checked=false
-            }}
-          {{/forms/form-element-wrapper}}
+        {{/forms/form-element-wrapper}}
       </div>
     {{/content-container/content-container}}
     {{!-- 
@@ -623,17 +623,223 @@
           }}
         {{/forms/form-element-wrapper}}
         {{#> forms/form-element-wrapper
+          id="hex-color-hash-example"
+          labelText="Without #"
+          hideError=true
+        }}
+          {{> forms/input-checkbox
+            dataAction="match-hex-color-hash"
             id="hex-color-hash-example"
-            labelText="Without #"
-            hideError=true
+            name="url-protocol"
+            checked=false
           }}
-            {{> forms/input-checkbox
-              dataAction="match-hex-color-hash"
-              id="hex-color-hash-example"
-              name="url-protocol"
-              checked=false
-            }}
-          {{/forms/form-element-wrapper}}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isImageMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isImageMimetype"
+      title="isImageMimetype"
+    }}
+      <p>Verify MIME type of image files using "isImageMimetype" function. By default the function allows "image/png", "image/jpeg", and "image/gif".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/png'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-icon'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>If you want to add support of "image/svg+xml" you need to add additional escaping as:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/svg+xml'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'svg\\+xml'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>
+        <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+        Be careful, the possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
+      </p>
+      <div class="flex-row">
+        {{#> forms/form-element-wrapper
+          id="image-mimetype-example"
+          labelText="Enter an image MIME type"
+          errorText="Please enter correct image MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-image-mimetype"
+            id="image-mimetype-example"
+            placeholderText="image/png"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="image-mimtype-additional-example"
+          labelText="List of image MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-image-mimetype-additional"
+            id="image-mimtype-additional-example"
+            placeholderText="png, jpeg, x-icon"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isAudioMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isAudioMimetype"
+      title="isAudioMimetype"
+    }}
+      <p>Verify MIME type of audio files using "isAudioMimetype" function. By default the function allows only "audio/mpeg".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/mpeg'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-aiff'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row">
+        {{#> forms/form-element-wrapper
+          id="audio-mimetype-example"
+          labelText="Enter an audio MIME type"
+          errorText="Please enter correct audio MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-audio-mimetype"
+            id="audio-mimetype-example"
+            placeholderText="audio/mpeg"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="audio-mimtype-additional-example"
+          labelText="List of audio MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-audio-mimetype-additional"
+            id="audio-mimtype-additional-example"
+            placeholderText="mpeg, x-aiff"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isVideoMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isVideoMimetype"
+      title="isVideoMimetype"
+    }}
+      <p>Verify MIME type of video files using "isVideoMimetype" function. By default the function allows "video/mpeg", "video/mp4", and "video/quicktime".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/mp4'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-msvideo'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row">
+        {{#> forms/form-element-wrapper
+          id="video-mimetype-example"
+          labelText="Enter a video MIME type"
+          errorText="Please enter correct video MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-video-mimetype"
+            id="video-mimetype-example"
+            placeholderText="video/mp4"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="video-mimtype-additional-example"
+          labelText="List of video MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-video-mimetype-additional"
+            id="video-mimtype-additional-example"
+            placeholderText="mpeg, x-msvideo"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isMimetype"
+      title="isMimetype"
+    }}
+      <p>Verify any MIME type of files using "isMimeType" function. By default this function works as "isImageMimetype", but you can extend it for every file type. Use second argument to set prefix as 'image' or 'application'. Add array of types as third argument.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'application/zip'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>
+        <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+        This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\+xml".
+      </p>
+      <div class="flex-row">
+        {{#> forms/form-element-wrapper
+          id="mimetype-example"
+          labelText="Enter a custom MIME type"
+          errorText="Please enter correct MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-mimetype"
+            id="mimetype-example"
+            placeholderText="application/zip"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="mimetype-prefix-example"
+          labelText="MIME type prefix"
+          hideError=true
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-mimetype-prefix"
+            id="mimetype-prefix-example"
+            placeholderText="application"
+            value="application"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="mimetype-additional-example"
+          labelText="List of custom MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-mimetype-additional"
+            id="mimetype-additional-example"
+            placeholderText="zip, vnd.ms-excel"
+            value="zip"
+          }}
+        {{/forms/form-element-wrapper}}
       </div>
     {{/content-container/content-container}}
   </main>

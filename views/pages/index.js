@@ -158,7 +158,7 @@ function handleImageMimeTypeInput(eventOrElement) {
   const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
   const value = input.value;
   if (value) {
-    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const additionalMimeTypes = input.dataset.additionalMimeTypes;
     const isMatch = regexies.isImageMimetype(value, createMimeTypesList(additionalMimeTypes));
     showError(input, !isMatch);
   } else {
@@ -170,7 +170,7 @@ function handleAudioMimeTypeInput(eventOrElement) {
   const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
   const value = input.value;
   if (value) {
-    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const additionalMimeTypes = input.dataset.additionalMimeTypes;
     const isMatch = regexies.isAudioMimetype(value, createMimeTypesList(additionalMimeTypes));
     showError(input, !isMatch);
   } else {
@@ -182,7 +182,7 @@ function handleVideoMimeTypeInput(eventOrElement) {
   const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
   const value = input.value;
   if (value) {
-    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const additionalMimeTypes = input.dataset.additionalMimeTypes;
     const isMatch = regexies.isVideoMimetype(value, createMimeTypesList(additionalMimeTypes));
     showError(input, !isMatch);
   } else {
@@ -195,9 +195,22 @@ function handleMimeTypeInput(eventOrElement) {
   const value = input.value;
   if (value) {
     const mimeTypePrefix = input.dataset.prefixMimeTypes;
-    const additionalMimeTypes = input.dataset.additionalMimeTypes
+    const additionalMimeTypes = input.dataset.additionalMimeTypes;
     const preparedMimeTypes = additionalMimeTypes ? createMimeTypesList(additionalMimeTypes) : [];
     const isMatch = regexies.isMimetype(value, mimeTypePrefix, preparedMimeTypes);
+    showError(input, !isMatch);
+  } else {
+    showError(input, false);
+  }
+}
+
+function handleSlugInput(eventOrElement) {
+  const input = eventOrElement instanceof Event ? eventOrElement.target : eventOrElement;
+  const value = input.value;
+  if (value) {
+    const separator = input.dataset.slugSeparator || '_';
+    const language = input.dataset.slugLanguage || 'en';
+    const isMatch = regexies.isSlug(value, separator, language);
     showError(input, !isMatch);
   } else {
     showError(input, false);
@@ -379,5 +392,45 @@ document.addEventListener('DOMContentLoaded', () => {
   mimeTypeAdditionalInput.addEventListener('input', (event) => {
     mimeTypeInput.dataset.additionalMimeTypes = event.target.value;
     handleMimeTypeInput(mimeTypeInput);
+  });
+
+  // Numbers example
+  const numbersInputs = document.querySelectorAll('[data-action="match-numbers"]');
+  initMatchTextInputs(numbersInputs, regexies.isNumbersOnly);
+
+  // ObjectId/MongoId example
+  const mongoIdInputs = document.querySelectorAll('[data-action="match-mongoid"]');
+  initMatchTextInputs(mongoIdInputs, regexies.isMongoId);
+
+  // Roman number example
+  const romanNumberInputs = document.querySelectorAll('[data-action="match-roman-number"]');
+  initMatchTextInputs(romanNumberInputs, regexies.isRomanNumber);
+
+  // Twitter example
+  const twitterInputs = document.querySelectorAll('[data-action="match-twitter"]');
+  initMatchTextInputs(twitterInputs, regexies.isTwitterHandle);
+
+  // LinkedIn example
+  const linkedInInputs = document.querySelectorAll('[data-action="match-linkedin"]');
+  initMatchTextInputs(linkedInInputs, regexies.isLinkedInProfileUrl);
+
+  // Facebook example
+  const facebookInputs = document.querySelectorAll('[data-action="match-facebook"]');
+  initMatchTextInputs(facebookInputs, regexies.isFacebookProfileUrl);
+
+  // Slug example
+  const slugInput = document.querySelector('[data-action="match-slug"]');
+  const slugSeparatorInput = document.querySelector('[data-action="match-slug-separator"]');
+  const slugLanguageSelect = document.querySelector('[data-action="match-slug-language"]');
+  slugInput.dataset.slugSeparator = slugSeparatorInput.value;
+  slugInput.dataset.slugLanguage = slugLanguageSelect.value;
+  slugInput.addEventListener('input', handleSlugInput);
+  slugSeparatorInput.addEventListener('input', (event) => {
+    slugInput.dataset.slugSeparator = event.target.value;
+    handleSlugInput(slugInput);
+  });
+  slugLanguageSelect.addEventListener('input', (event) => {
+    slugInput.dataset.slugLanguage = event.target.value;
+    handleSlugInput(slugInput);
   });
 }, false);

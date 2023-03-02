@@ -106,7 +106,7 @@
         formClassNames="hidden bordered my-16"
         dataAction="create-is-form"
       }}
-        <div class="flex-row">
+        <div class="flex-row flex-wrap">
           {{!-- createIs -> Allow numbers checkbox --}}
           {{#> forms/form-element-wrapper
             id="create-is-number"
@@ -134,7 +134,7 @@
             }}
           {{/forms/form-element-wrapper}}
         </div>
-        <div class="flex-row">
+        <div class="flex-row  flex-wrap">
           {{!-- createIs -> Allow upper/lowercase letters checkbox --}}
           {{#> forms/form-element-wrapper
             id="create-is-letters-all"
@@ -178,7 +178,7 @@
             }}
           {{/forms/form-element-wrapper}}
         </div>
-        <div class="flex-row">
+        <div class="flex-row flex-wrap">
           {{!-- createIs -> Language select --}}
           {{#> forms/form-element-wrapper
             id="create-is-language"
@@ -186,7 +186,7 @@
             hideError=true
           }}
             {{#> forms/select
-              id="create-is-number"
+              id="create-is-language"
               name="lettersCountry"
               value="en"
             }}
@@ -237,7 +237,7 @@
             }}
           {{/forms/form-element-wrapper}}
         </div>
-        <div class="flex-row">
+        <div class="flex-row flex-wrap">
           {{!-- createIs -> Exact match input --}}
           {{#> forms/form-element-wrapper
             id="create-is-exact"
@@ -263,7 +263,7 @@
             }}
           {{/forms/form-element-wrapper}}
         </div>
-        <div class="flex-row">
+        <div class="flex-row flex-wrap">
           {{> buttons/button
             classNames="primary mr-16"
             text="Save"
@@ -463,7 +463,7 @@
           <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuidV4</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcae-c961-11ea-87d0-0242ac130003'</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-c">// false (version 1)</span>
         </pre>
       {{/code-example/code-example}}
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="uuid-example"
           labelText="Enter an UUID"
@@ -562,7 +562,7 @@
           <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'&amp;google.com'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
         </pre>
       {{/code-example/code-example}}
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="url-example"
           labelText="Enter an URL"
@@ -609,7 +609,7 @@
           <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'00W880'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
         </pre>
       {{/code-example/code-example}}
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="hex-color-example"
           labelText="Enter a hex color"
@@ -666,7 +666,7 @@
         <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
         Be careful, the possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
       </p>
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="image-mimetype-example"
           labelText="Enter an image MIME type"
@@ -712,7 +712,7 @@
           <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-aiff'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
         </pre>
       {{/code-example/code-example}}
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="audio-mimetype-example"
           labelText="Enter an audio MIME type"
@@ -758,7 +758,7 @@
           <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-msvideo'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
         </pre>
       {{/code-example/code-example}}
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="video-mimetype-example"
           labelText="Enter a video MIME type"
@@ -802,7 +802,7 @@
         <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
         This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\+xml".
       </p>
-      <div class="flex-row">
+      <div class="flex-row flex-wrap">
         {{#> forms/form-element-wrapper
           id="mimetype-example"
           labelText="Enter a custom MIME type"
@@ -839,6 +839,237 @@
             placeholderText="zip, vnd.ms-excel"
             value="zip"
           }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isNumbersOnly function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isNumbersOnly"
+      title="isNumbersOnly"
+    }}
+      <p>Verify a string to find out if it includes only numbers or not.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'12345678901234567890'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="numbers-example"
+        labelText="Enter numbers"
+        errorText="Please enter correct numbers"
+      }}
+        {{> forms/input-text
+          dataAction="match-numbers"
+          id="numbers-example"
+          placeholderText="1234567890"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isObjectId/isMongoId function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isMongoId"
+      title="isMongoId"
+    }}
+      <p>Verify mongodb id (that is ObjectId type). You can use two names that are aliases isObjectId and isMongoId. Theoretically, ObjectId is just a string contains numbers from 0 to 9, letters a, b, c, d, f and has length 24. Some strings could look not like typical MongoDB id, but are still correct for the regex pattern.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectObjectId</span> <span class="pl-c1">=</span> <span class="pl-en">isObjectId</span><span class="pl-kos">(</span><span class="pl-s">'5f17d5d2040de74f301f686f'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'abcdf1234012345678901234'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="mongoid-example"
+        labelText="Enter an object or mongo id"
+        errorText="Please enter correct object or mongo id"
+      }}
+        {{> forms/input-text
+          dataAction="match-mongoid"
+          id="mongoid-example"
+          placeholderText="5f17d5d2040de74f301f686f"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isRomanNumber function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isRomanNumber"
+      title="isRomanNumber"
+    }}
+      <p>Verify a roman numbers using "isRomanNumber" function.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'X'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'IIX'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="roman-number-example"
+        labelText="Enter a roman number"
+        errorText="Please enter correct roman number"
+      }}
+        {{> forms/input-text
+          dataAction="match-roman-number"
+          id="roman-number-example"
+          placeholderText="VII"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isTwitterHandle function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isTwitterHandle"
+      title="isTwitterHandle"
+    }}
+      <p>Verify a twitter handle using "isTwitterHandle" function. Handle's length should be less than 15, handle can include letters, numbers and underscore.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_smith09'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_$mith09'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="twitter-example"
+        labelText="Enter a twitter handle"
+        errorText="Please enter correct twitter handle"
+      }}
+        {{> forms/input-text
+          dataAction="match-twitter"
+          id="twitter-example"
+          placeholderText="john_doe23"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isLinkedInProfileUrl function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isLinkedInProfileUrl"
+      title="isLinkedInProfileUrl"
+    }}
+      <p>
+        Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+        Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+        Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/johnsmith/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'http://ca.linkedin.com/in/johnsmith'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/jo/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="linkedin-example"
+        labelText="Enter a LinkedIn profile URL"
+        errorText="Please enter correct LinkedIn profile URL"
+      }}
+        {{> forms/input-text
+          dataAction="match-linkedin"
+          id="linkedin-example"
+          placeholderText="https://www.linkedin.com/in/johndoe/"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isFacebookProfileUrl function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isFacebookProfileUrl"
+      title="isFacebookProfileUrl"
+    }}
+      <p>
+        Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+        Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+        Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john.smith01/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="facebook-example"
+        labelText="Enter a Facebook profile URL"
+        errorText="Please enter correct Facebook profile URL"
+      }}
+        {{> forms/input-text
+          dataAction="match-facebook"
+          id="facebook-example"
+          placeholderText="https://www.facebook.com/john.doe01/"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isSlug function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isSlug"
+      title="isSlug"
+    }}
+      <p>
+        Verify a slug from URL. Add custom separator using second argument ('-' by default). Add custom language using third argument (by default 'en'). It's better to avoid specific characters for latin letters, but sometimes it's the case. Supported languages: english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'.<br>
+        Optional: a separator.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word-and-word'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word_and_word'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'слово_и_слово'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">,</span> <span class="pl-s">'ru'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="slug-example"
+          labelText="Enter a slug"
+          errorText="Please enter correct slug"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-slug"
+            id="slug-example"
+            placeholderText="word-and-word"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="slug-separator-example"
+          labelText="Slug separator"
+          hideError=true
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-slug-separator"
+            id="slug-separator-example"
+            placeholderText="-"
+            value="-"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="slug-language-example"
+          labelText="Slug language"
+          hideError=true
+        }}
+          {{#> forms/select
+            id="slug-language-example"
+            dataAction="match-slug-language"
+            value="en"
+          }}
+            <option value="en">English</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+            <option value="ru">Russian</option>
+            <option value="ua">Ukrainian</option>
+            <option value="fr">French</option>
+          {{/forms/select}}
         {{/forms/form-element-wrapper}}
       </div>
     {{/content-container/content-container}}

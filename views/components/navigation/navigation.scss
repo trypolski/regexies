@@ -4,19 +4,22 @@
   display: flex;
   flex-direction: row;
   main {
+    width: calc(100% - 224px);
     display: flex;
     flex-direction: column;
-    margin-left: 208px;
+    padding: 0 32px 32px 232px;
+    margin: 0;
   }
 }
 
 nav {
   position: fixed;
-  width: 160px;
+  width: 184px;
   max-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 24px 8px 24px 24px;
+  overflow-y: scroll;
 
   strong {
     display: flex;

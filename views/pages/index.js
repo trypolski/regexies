@@ -433,4 +433,8 @@ document.addEventListener('DOMContentLoaded', () => {
     slugInput.dataset.slugLanguage = event.target.value;
     handleSlugInput(slugInput);
   });
+
+  // Emoji example
+  const emojiInputs = document.querySelectorAll('[data-action="match-emoji"]');
+  initMatchTextInputs(emojiInputs, regexies.isEmojiOnly);
 }, false);

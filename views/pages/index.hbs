@@ -1073,5 +1073,31 @@
         {{/forms/form-element-wrapper}}
       </div>
     {{/content-container/content-container}}
+    {{!-- 
+      isEmojiOnly function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isEmojiOnly"
+      title="isEmojiOnly"
+    }}
+      <p>Verify a string to find out if it includes only emoji or not. There is a build in regex for emoji <strong>/\p{Emoji_Presentation}/gu</strong> that can be used insteaf of isEmojiOnly function with custom regular expression.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'😀💩👀'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'asdqwertyvbn'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'123👨🏻👩🏻456'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="emoji-example"
+        labelText="Enter emoji"
+        errorText="Please enter only emoji"
+      }}
+        {{> forms/input-text
+          dataAction="match-emoji"
+          id="emoji-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
   </main>
 {{/decorators/page}}

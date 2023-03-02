@@ -22,3 +22,4 @@ module.exports.isTwitterHandle = require('./src/isTwitterHandle');
 module.exports.isLinkedInProfileUrl = require('./src/isLinkedInProfileUrl');
 module.exports.isFacebookProfileUrl = require('./src/isFacebookProfileUrl');
 module.exports.isSlug = require('./src/isSlug');
+module.exports.isEmojiOnly = require('./src/isEmojiOnly');

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Regexies</title>
+    <title>Regexies documentation</title>
     <meta name="description" content="The library includes a list of popular regex functions for every project usage. You can use special builder functions to create your own regexes.">
     <meta name="keywords" content="regular, expressions, regex, regexp, match, regular expressions, js regex, javascript regex">
     <meta name="mobile-web-app-capable" content="yes">
@@ -10,12 +10,1027 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="./public/css/styles.css">
     <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
+  </head>  <body class="has-sidebar">
+      <header>
+        <nav>
+          <ul>
+            <li class="navigation-item">
+              <strong>Create own regex:</strong>
+              <ul>
+                <li data-action="navigation-link-wrapper" data-nav-url="#is">
+                  <a href="#is" data-nav-url="#is">is</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#createIs">
+                  <a href="#createIs" data-nav-url="#createIs">createIs</a>
+                </li>
+              </ul>
+            </li>
+            <li class="navigation-item">
+              <strong>Escape string:</strong>
+              <ul>
+                <li data-action="navigation-link-wrapper" data-nav-url="#escape">
+                  <a href="#escape" data-nav-url="#escape">escape</a>
+                </li>
+              </ul>
+            </li>
+            <li class="navigation-item">
+              <strong>Verify strings:</strong>
+              <ul>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isEmail">
+                  <a href="#isEmail" data-nav-url="#isEmail">isEmail</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isPassword">
+                  <a href="#isPassword" data-nav-url="#isPassword">isPassword</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isUuid">
+                  <a href="#isUuid" data-nav-url="#isUuid">isUuid</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isBearer">
+                  <a href="#isBearer" data-nav-url="#isBearer">isBearer</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isJwt">
+                  <a href="#isJwt" data-nav-url="#isJwt">isJwt</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isUrl">
+                  <a href="#isUrl" data-nav-url="#isUrl">isUrl</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isHexColor">
+                  <a href="#isHexColor" data-nav-url="#isHexColor">isHexColor</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isImageMimetype">
+                  <a href="#isImageMimetype" data-nav-url="#isImageMimetype">isImageMimetype</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isAudioMimetype">
+                  <a href="#isAudioMimetype" data-nav-url="#isAudioMimetype">isAudioMimetype</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isVideoMimetype">
+                  <a href="#isVideoMimetype" data-nav-url="#isVideoMimetype">isVideoMimetype</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isMimetype">
+                  <a href="#isMimetype" data-nav-url="#isMimetype">isMimetype</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isNumbersOnly">
+                  <a href="#isNumbersOnly" data-nav-url="#isNumbersOnly">isNumbersOnly</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isMongoId">
+                  <a href="#isMongoId" data-nav-url="#isMongoId">isMongoId/isObjectId</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isRomanNumber">
+                  <a href="#isRomanNumber" data-nav-url="#isRomanNumber">isRomanNumber</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isTwitterHandle">
+                  <a href="#isTwitterHandle" data-nav-url="#isTwitterHandle">isTwitterHandle</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isLinkedInProfileUrl">
+                  <a href="#isLinkedInProfileUrl" data-nav-url="#isLinkedInProfileUrl">isLinkedInProfileUrl</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isFacebookProfileUrl">
+                  <a href="#isFacebookProfileUrl" data-nav-url="#isFacebookProfileUrl">isFacebookProfileUrl</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isSlug">
+                  <a href="#isSlug" data-nav-url="#isSlug">isSlug</a>
+                </li>
+                <li data-action="navigation-link-wrapper" data-nav-url="#isEmojiOnly">
+                  <a href="#isEmojiOnly" data-nav-url="#isEmojiOnly">isEmojiOnly</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>      </header>
       <main>
-        <h1>Regexies</h1>
-      </main>
-    <script src='./public/js/scripts.js'></script>
+        <h1>Regexies documentation</h1>
+    <div class="content-wrapper">
+        <h2 id="is">is<a class="content-title-link" href="#is" data-nav-url="#is" data-action="content-title-link"> #</a></h2>
+            <p>Use this function to create your own regex and check a string. This function is a wrapper function for <a href="#createIs" data-nav-url="#createIs" data-action="content-title-link">createIs</a> and build in method .test of Regex class. To make your code less expensive just use <a href="#createIs" data-nav-url="#createIs" data-action="content-title-link">createIs</a> to generate regex.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-c">/**</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">String</span>} string String to check</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Object | Array</span>} userOptions Option object or array of option objects</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Boolean</span>} checkOptionsInput Check type of option values, by default set to "false"</span>
+                  <span class="pl-c"> * <span class="pl-k">@return</span> {<span class="pl-smi">Boolean</span>}</span>
+                  <span class="pl-c"> */</span>
+                  <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">,</span> <span class="pl-s1">userOptions</span><span class="pl-kos">,</span> <span class="pl-s1">checkOptionsInput</span><span class="pl-kos">)</span>
+              </pre>
+      </div>      <p>Second argument of the function could be object or array of objects with option parameters.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-c1">IS_DEFAULT_OPTIONS</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+                  <span class="pl-c1">numbers</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match numbers 0-9</span>
+                  <span class="pl-c1">lettersCountry</span>: <span class="pl-s">'en'</span><span class="pl-kos">,</span> <span class="pl-c">// {String} A country code to specify supported letters, English by default</span>
+                  <span class="pl-c1">lettersAll</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match lowercase and uppercase letters</span>
+                  <span class="pl-c1">lettersCapital</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match uppercase letters</span>
+                  <span class="pl-c1">lettersLowercase</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match lowercase letters</span>
+                  <span class="pl-c1">minLength</span>: <span class="pl-c1">undefined</span><span class="pl-kos">,</span> <span class="pl-c">// {Number} set min length of mathing group</span>
+                  <span class="pl-c1">maxLength</span>: <span class="pl-c1">undefined</span><span class="pl-kos">,</span> <span class="pl-c">// {Number} set max length of mathing group</span>
+                  <span class="pl-c1">specialCharacters</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} set special characters in the string (escape "\"), the function automatically escapes needed characters</span>
+                  <span class="pl-c1">optional</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} mark a matching group as optional</span>
+                  <span class="pl-c1">exact</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} put string that should exactly match, the function automatically escapes needed characters</span>
+                  <span class="pl-c1">range</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} put string that includes range to match (as '0-9', 'a-z'), the function doesn't automatically escape symbols</span>
+                  <span class="pl-kos">}</span>
+                </pre>
+      </div>      <p>
+              More about options:<br>
+              <strong>lettersCountry</strong> - specify letters of which country should be supported. By default the function supports English, but to match any letters you need to add one of options lettersAll, lettersCapital, lettersLowercase.<br>
+              <strong>Supported languages:</strong> english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'. More countries will be added in the future, it just takes a lot of time to figure out which letters should be included to regex.<br>
+              <strong>lettersAll</strong> - this option has higher priority and overwrites lettersCapital, lettersLowercase.<br>
+              <strong>minLength</strong> - if maxLength value isn't set it will match from min to any length.<br>
+              <strong>maxLength</strong> - if minLength value isn't set it will match from 0 to max.<br>
+              <strong>specialCharacters</strong> - a string that includes all special characters like "'!?§$%&/". All characters will be automatically escaped by the function, but don't forget to escape "" manually (specialCharacters: '\' to add backslash).<br>
+              <strong>exact</strong> - ignores all options except optional.<br>
+              <strong>range</strong> - ignores other options, but exact has higher priority<br>
+            </p>
+            <p>Example:</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">options</span> <span class="pl-c1">=</span> <span class="pl-kos">[</span>
+                  <span class="pl-kos">{</span> <span class="pl-c1">exact</span>: <span class="pl-s">'http://www.google.com/'</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+                  <span class="pl-kos">{</span> <span class="pl-c1">lettersLowercase</span>: <span class="pl-c1">true</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+                  <span class="pl-kos">{</span> <span class="pl-c1">specialCharacters</span>: <span class="pl-s">'/'</span><span class="pl-kos">,</span> <span class="pl-c1">minLength</span>: <span class="pl-c1">1</span><span class="pl-kos">,</span> <span class="pl-c1">maxLength</span>: <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+                  <span class="pl-kos">{</span> <span class="pl-c1">numbers</span>: <span class="pl-c1">true</span><span class="pl-kos">,</span> <span class="pl-c1">optional</span>: <span class="pl-c1">true</span> <span class="pl-kos">}</span>
+                  <span class="pl-kos">]</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/asd/0098767899'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/asd/'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/ASD/588766'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'https://www.google.com/asdas/678'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div></div><div class="content-wrapper">
+        <h2 id="createIs">createIs<a class="content-title-link" href="#createIs" data-nav-url="#createIs" data-action="content-title-link"> #</a></h2>
+            <p>This function generates regex based on options. This function uses the same option parameters as <a href="#is" data-nav-url="#is" data-action="content-title-link">is</a> function.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-c">/**</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Object | Array</span>} userOptions Option object or array of option objects</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Boolean</span>} checkOptionsInput Check type of option values, by default set to "false"</span>
+                  <span class="pl-c"> * <span class="pl-k">@return</span> {<span class="pl-smi">instanceof Regex</span>}</span>
+                  <span class="pl-c"> */</span>
+                  <span class="pl-en">createIs</span><span class="pl-kos">(</span><span class="pl-s1">userOptions</span><span class="pl-kos">,</span> <span class="pl-s1">checkOptionsInput</span><span class="pl-kos">)</span>
+                </pre>
+      </div>      <p>To test the "createIs" you can use our rules constructor with up to 5 rules (this restriction applies only for the demo, current function implementation has no limits):</p>
+            <div class="mb-16" data-action="create-is-rules-list"></div>
+            <div class="create-is-rule-item hidden bordered px-16 py-8 my-8" data-action="create-is-rule-item-example">
+              <span>Rule id: <span data-action="create-is-rule-item-index"></span></span>
+              <button
+                class="button-close "
+                data-action="create-is-delete-rule"
+                title="Delete rule"
+                
+              ></button>      </div>
+            <button
+              class="button "
+              data-action="create-is-add-rule"
+              title="createIs"
+              
+            >
+                Add a rule
+            </button>
+      <form class="form-wrapper column hidden bordered my-16" data-action="create-is-form">
+        <div class="form-wrapper-partial">
+                  <div class="flex-row flex-wrap">
+          <div class="form-element-wrapper row" form-element-wrapper>
+                        <input
+                          type="checkbox"
+                          class="input-checkbox "
+                          id="create-is-number"
+                          name="numbers"
+                          data-action="create-is-form"
+                          
+                        />    <label for="create-is-number" class="form-element-label">Allow numbers</label>
+          </div><div class="form-element-wrapper row" form-element-wrapper>
+                        <input
+                          type="checkbox"
+                          class="input-checkbox "
+                          id="create-is-optional"
+                          name="optional"
+                          data-action="create-is-form"
+                          
+                        />    <label for="create-is-optional" class="form-element-label">Rules are optional</label>
+          </div>        </div>
+                  <div class="flex-row  flex-wrap">
+          <div class="form-element-wrapper row" form-element-wrapper>
+                        <input
+                          type="checkbox"
+                          class="input-checkbox "
+                          id="create-is-letters-all"
+                          name="lettersAll"
+                          data-action="create-is-form"
+                          
+                        />    <label for="create-is-letters-all" class="form-element-label">Allow capital/lowercase letters</label>
+          </div><div class="form-element-wrapper row" form-element-wrapper>
+                        <input
+                          type="checkbox"
+                          class="input-checkbox "
+                          id="create-is-letters-capital"
+                          name="lettersCapital"
+                          data-action="create-is-form"
+                          
+                        />    <label for="create-is-letters-capital" class="form-element-label">Allow capital letters</label>
+          </div><div class="form-element-wrapper row" form-element-wrapper>
+                        <input
+                          type="checkbox"
+                          class="input-checkbox "
+                          id="create-is-letters-lowercase"
+                          name="lettersLowercase"
+                          data-action="create-is-form"
+                          
+                        />    <label for="create-is-letters-lowercase" class="form-element-label">Allow lowercase letters</label>
+          </div>        </div>
+                  <div class="flex-row flex-wrap">
+          <div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-language" class="form-element-label">Allow letters by language</label>
+            <select
+              class="form-select "
+              id="create-is-language"
+              name="lettersCountry"
+              data-action="create-is-form"
+              value="en"
+            >
+                              <option value="en">English</option>
+                              <option value="de">German</option>
+                              <option value="es">Spanish</option>
+                              <option value="ru">Russian</option>
+                              <option value="ua">Ukrainian</option>
+                              <option value="fr">French</option>
+            </select></div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-min-length" class="form-element-label">Min length</label>
+                        <input
+                          type="number"
+                          class="input-number"
+                          min="0"
+                          max=""
+                          
+                          id="create-is-min-length"
+                          name="minLength"
+                          data-action="create-is-form"
+                          
+                        /></div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-min-length" class="form-element-label">Max length</label>
+                        <input
+                          type="number"
+                          class="input-number"
+                          min="1"
+                          max=""
+                          
+                          id="create-is-min-length"
+                          name="maxLength"
+                          data-action="create-is-form"
+                          
+                        /></div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-special-characters" class="form-element-label">Special characters</label>
+                        <input
+                          type="text"
+                          class="input-text "
+                          placeholder="Enter special charachters"
+                          id="create-is-special-characters"
+                          name="specialCharacters"
+                          data-action="create-is-form"
+                          
+                        />    <div class="form-element-error" form-element-error form-default-error-message="">
+                
+              </div>
+          </div>        </div>
+                  <div class="flex-row flex-wrap">
+          <div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-exact" class="form-element-label">Exactly match string</label>
+                        <input
+                          type="text"
+                          class="input-text "
+                          placeholder="Enter a text"
+                          id="create-is-exact"
+                          name="exact"
+                          data-action="create-is-form"
+                          
+                        />    <div class="form-element-error" form-element-error form-default-error-message="">
+                
+              </div>
+          </div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="create-is-range" class="form-element-label">Regex range</label>
+                        <input
+                          type="text"
+                          class="input-text "
+                          placeholder="Enter a range as 0-9 or a-z"
+                          id="create-is-range"
+                          name="range"
+                          data-action="create-is-form"
+                          
+                        />    <div class="form-element-error" form-element-error form-default-error-message="">
+                
+              </div>
+          </div>        </div>
+                  <div class="flex-row flex-wrap">
+                    <button
+                      class="button primary mr-16"
+                      data-action="create-is-save-rule"
+                      title="createIs"
+                      
+                    >
+                        Save
+                    </button>
+                    <button
+                      class="button "
+                      data-action="create-is-cancel-rule"
+                      title="createIs"
+                      
+                    >
+                        Cancel
+                    </button>
+                  </div>
+        </div>
+        <div class="form-wrapper-error" form-wrapper-error form-default-error-message="">
+          
+        </div>
+      </form>      <p class="pt-24">Test your custom createIs regex <span data-action="create-is-regex"></span> created using rules above.</p>
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="create-is-example" class="form-element-label">Enter some text here</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  
+                  id="create-is-example"
+                  
+                  data-action="create-is-example"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="A string doesn&#x27;t match your created regex">
+            A string doesn&#x27;t match your created regex
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="escape">Escape<a class="content-title-link" href="#escape" data-nav-url="#escape" data-action="content-title-link"> #</a></h2>
+            <h3 class="pt-16">escapeShort and escapeLong functions</h3>
+            <p>Use escapeShort to escape strings with length <= 60 and escapeLong for strings longer than 60 symbols.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-c">/**</span>
+                  <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">String</span>} string String to escape</span>
+                  <span class="pl-c"> */</span>
+                  <span class="pl-en">escapeShort</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">)</span> <span class="pl-c">// custom function with for loop</span>
+                  <span class="pl-en">escapeLong</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">)</span>  <span class="pl-c">// string.replace(/[\.\^\$\*\+\?\(\)\[\]\{\}\\\|\/\-]/g, '\\$&amp;');</span>
+                </pre>
+      </div>      <p>Use this function to escape special characters that should be escaped in Regex. The function decides which helper function to use escapeShort or escapeLong depends on length of the string.</p>
+            <p><strong>Result: </strong><span data-action="escape-example-result"></span></p>
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="escape-example" class="form-element-label">Enter some special characters</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  
+                  id="escape-example"
+                  
+                  data-action="escape-example-input"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="">
+            
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isEmail">isEmail<a class="content-title-link" href="#isEmail" data-nav-url="#isEmail" data-action="content-title-link"> #</a></h2>
+            <p>Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectEmail</span> <span class="pl-c1">=</span> <span class="pl-en">isEmail</span><span class="pl-kos">(</span><span class="pl-s">'email@address.com'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectEmail</span> <span class="pl-c1">=</span> <span class="pl-en">isEmail</span><span class="pl-kos">(</span><span class="pl-s">'email@address.c'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="email-example" class="form-element-label">Enter an email</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="email@site.com"
+                  id="email-example"
+                  
+                  data-action="match-email"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct email address">
+            Please enter correct email address
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isPassword">isPassword<a class="content-title-link" href="#isPassword" data-nav-url="#isPassword" data-action="content-title-link"> #</a></h2>
+            <p>Verify passwords using "isPassword" function. By default password's length should be 8-30 and !"§$%&()=?*+#,.;:_- are allowed symbols.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'asdsa%&amp;()=123'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;a'</span><span class="pl-kos">)</span> <span class="pl-c">// false (too short)</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;aasdasdajhdawzdgaw56789asdaskdjn?*+#,.;'</span><span class="pl-kos">)</span> <span class="pl-c">// false (too long)</span>
+                </pre>
+      </div>      <p>You can extend current function changing min/max length and add your own set of supported symbols isPassword(password, minLength, maxLength, customSetOfSymbols)</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;aasdasdajhdawzdgaw56789asdaskdjn?*+#,.;'</span><span class="pl-kos">,</span> <span class="pl-c1">8</span><span class="pl-kos">,</span> <span class="pl-c1">60</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc°'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">20</span><span class="pl-kos">,</span> <span class="pl-s">'°'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-c">// but</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc°!'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">20</span><span class="pl-kos">,</span> <span class="pl-s">'°'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <h3 class="py-8">Default password function</h3>
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="password-default-example" class="form-element-label">Enter a password</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="Password"
+                  id="password-default-example"
+                  
+                  data-action="match-default-password"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Password&#x27;s length should be 8-30 and !&quot;§$%&amp;()&#x3D;?*+#,.;:_- are allowed symbols">
+            Password&#x27;s length should be 8-30 and !&quot;§$%&amp;()&#x3D;?*+#,.;:_- are allowed symbols
+          </div>
+      </div>      <h3>Custom password function</h3>
+            <p>Create your own password using min/max length and allowed symbols options.</p>
+      <form class="form-wrapper row" data-action="custom-password-form">
+        <div class="form-wrapper-partial">
+          <div class="form-element-wrapper" form-element-wrapper>
+                <label for="min-length-custom-password" class="form-element-label">Min length</label>
+                      <input
+                        type="number"
+                        class="input-number"
+                        min="1"
+                        max=""
+                        
+                        id="min-length-custom-password"
+                        name="minLengthPassword"
+                        data-action="custom-password-form"
+                        value="8"
+                      /></div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="max-length-custom-password" class="form-element-label">Max length</label>
+                      <input
+                        type="number"
+                        class="input-number"
+                        min="2"
+                        max=""
+                        
+                        id="max-length-custom-password"
+                        name="maxLengthPassword"
+                        data-action="custom-password-form"
+                        value="16"
+                      /></div><div class="form-element-wrapper" form-element-wrapper>
+                <label for="allowed-characters-custom-password" class="form-element-label">Special characters</label>
+                      <input
+                        type="text"
+                        class="input-text "
+                        placeholder="Enter allowed charachters"
+                        id="allowed-characters-custom-password"
+                        name="specialCharactersPassword"
+                        data-action="custom-password-form"
+                        value="!&quot;§$%&amp;()&#x3D;?*+#,.;:_-"
+                      />    <div class="form-element-error" form-element-error form-default-error-message="">
+                
+              </div>
+          </div>  </div>
+        <div class="form-wrapper-error" form-wrapper-error form-default-error-message="">
+          
+        </div>
+      </form><div class="form-element-wrapper" form-element-wrapper>
+            <label for="password-custom-example" class="form-element-label">Test a custom password</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="Custom password"
+                  id="password-custom-example"
+                  
+                  data-action="match-custom-password"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Password&#x27;s length should be between {min}-{max} and {character} are allowed symbols">
+            Password&#x27;s length should be between {min}-{max} and {character} are allowed symbols
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isUuid">isUuid<a class="content-title-link" href="#isUuid" data-nav-url="#isUuid" data-action="content-title-link"> #</a></h2>
+            <p>Verify uuid string using "isUuid" function. By default the function supports all versions of uuid.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'e56ef521-03b3-4664-8e69-982729ebe460'</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 4)</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcae-c961-11ea-87d0-0242ac130003'</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 1)</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcaec96111ea-87d0-0242ac130003'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <p>Just add second argument as true, to exclude support of other uuid versions except version 4.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuidV4</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'e56ef521-03b3-4664-8e69-982729ebe460'</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 4)</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuidV4</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcae-c961-11ea-87d0-0242ac130003'</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-c">// false (version 1)</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="uuid-example" class="form-element-label">Enter an UUID</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="b1170a5d-7a2f-4872-b4ac-b6606295b2db"
+                    id="uuid-example"
+                    
+                    data-action="match-uuid"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct UUID">
+            Please enter correct UUID
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="uuid-v4-example" class="form-element-label">Only UUID v4</label>
+                    <input
+                      type="checkbox"
+                      class="input-checkbox "
+                      id="uuid-v4-example"
+                      name="uuidv4"
+                      data-action="match-uuid-v4"
+                      
+                    /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isBearer">isBearer<a class="content-title-link" href="#isBearer" data-nav-url="#isBearer" data-action="content-title-link"> #</a></h2>
+            <p>Verify Authorization header data that looks like "Bearer {token}" using "isBearer" function.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'BearereyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI"'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="bearer-example" class="form-element-label">Enter a bearer token</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI"
+                  id="bearer-example"
+                  
+                  data-action="match-bearer-token"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct bearer token">
+            Please enter correct bearer token
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isJwt">isJwt<a class="content-title-link" href="#isJwt" data-nav-url="#isJwt" data-action="content-title-link"> #</a></h2>
+            <p>Verify value of JWT token using "isJwt" function. There is a way to create more strict regex to check Base64Url encoded data string for JWT token. Regexies allows not only "." symbol in encoded string, but some additional symbols as required for Base64Url encoded data.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA.as1'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'"eyJ.eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA"'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="jwt-example" class="form-element-label">Enter a JWT token</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ"
+                  id="jwt-example"
+                  
+                  data-action="match-jwt-token"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct JWT token">
+            Please enter correct JWT token
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isUrl">isUrl<a class="content-title-link" href="#isUrl" data-nav-url="#isUrl" data-action="content-title-link"> #</a></h2>
+            <p>Verify URLs using "isUrl" function. By default "http" or "https" prefix is required, but you can always disable it adding second argument to the function as "false".</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'http://google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-c">// but</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'www.google.com'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'&amp;google.com'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="url-example" class="form-element-label">Enter an URL</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="http://site.com/"
+                    id="url-example"
+                    
+                    data-action="match-url"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct URL">
+            Please enter correct URL
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="url-protocol-example" class="form-element-label">Make http:// and https:// optional </label>
+                  <input
+                    type="checkbox"
+                    class="input-checkbox "
+                    id="url-protocol-example"
+                    name="url-protocol"
+                    data-action="match-url-protocol"
+                    
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isHexColor">isHexColor<a class="content-title-link" href="#isHexColor" data-nav-url="#isHexColor" data-action="content-title-link"> #</a></h2>
+            <p>Verify css colors using "isHexColor" function. By default hex color should start with "#" symbol, but you can disable it adding second argument to the function as "false".</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#fFf111'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#000'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#000qff'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000000'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                  <span class="pl-c">// but</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000FFF'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'00W880'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="hex-color-example" class="form-element-label">Enter a hex color</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="#FFF111"
+                    id="hex-color-example"
+                    
+                    data-action="match-hex-color"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct hex color">
+            Please enter correct hex color
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="hex-color-hash-example" class="form-element-label">Without #</label>
+                  <input
+                    type="checkbox"
+                    class="input-checkbox "
+                    id="hex-color-hash-example"
+                    name="url-protocol"
+                    data-action="match-hex-color-hash"
+                    
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isImageMimetype">isImageMimetype<a class="content-title-link" href="#isImageMimetype" data-nav-url="#isImageMimetype" data-action="content-title-link"> #</a></h2>
+            <p>Verify MIME type of image files using "isImageMimetype" function. By default the function allows "image/png", "image/jpeg", and "image/gif".</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/png'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-icon'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                </pre>
+      </div>      <p>If you want to add support of "image/svg+xml" you need to add additional escaping as:</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/svg+xml'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'svg\\+xml'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                </pre>
+      </div>      <p>
+              <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+              Be careful, the possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
+            </p>
+            <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="image-mimetype-example" class="form-element-label">Enter an image MIME type</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="image/png"
+                    id="image-mimetype-example"
+                    
+                    data-action="match-image-mimetype"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct image MIME type">
+            Please enter correct image MIME type
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="image-mimtype-additional-example" class="form-element-label">List of image MIME types</label>
+                  <input
+                    type="text"
+                    class="input-text "
+                    placeholder="png, jpeg, x-icon"
+                    id="image-mimtype-additional-example"
+                    
+                    data-action="match-image-mimetype-additional"
+                    
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isAudioMimetype">isAudioMimetype<a class="content-title-link" href="#isAudioMimetype" data-nav-url="#isAudioMimetype" data-action="content-title-link"> #</a></h2>
+            <p>Verify MIME type of audio files using "isAudioMimetype" function. By default the function allows only "audio/mpeg".</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/mpeg'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-aiff'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="audio-mimetype-example" class="form-element-label">Enter an audio MIME type</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="audio/mpeg"
+                    id="audio-mimetype-example"
+                    
+                    data-action="match-audio-mimetype"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct audio MIME type">
+            Please enter correct audio MIME type
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="audio-mimtype-additional-example" class="form-element-label">List of audio MIME types</label>
+                  <input
+                    type="text"
+                    class="input-text "
+                    placeholder="mpeg, x-aiff"
+                    id="audio-mimtype-additional-example"
+                    
+                    data-action="match-audio-mimetype-additional"
+                    
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isVideoMimetype">isVideoMimetype<a class="content-title-link" href="#isVideoMimetype" data-nav-url="#isVideoMimetype" data-action="content-title-link"> #</a></h2>
+            <p>Verify MIME type of video files using "isVideoMimetype" function. By default the function allows "video/mpeg", "video/mp4", and "video/quicktime".</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/mp4'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-msvideo'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="video-mimetype-example" class="form-element-label">Enter a video MIME type</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="video/mp4"
+                    id="video-mimetype-example"
+                    
+                    data-action="match-video-mimetype"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct video MIME type">
+            Please enter correct video MIME type
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="video-mimtype-additional-example" class="form-element-label">List of video MIME types</label>
+                  <input
+                    type="text"
+                    class="input-text "
+                    placeholder="mpeg, x-msvideo"
+                    id="video-mimtype-additional-example"
+                    
+                    data-action="match-video-mimetype-additional"
+                    
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isMimetype">isMimetype<a class="content-title-link" href="#isMimetype" data-nav-url="#isMimetype" data-action="content-title-link"> #</a></h2>
+            <p>Verify any MIME type of files using "isMimeType" function. By default this function works as "isImageMimetype", but you can extend it for every file type. Use second argument to set prefix as 'image' or 'application'. Add array of types as third argument.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'application/zip'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div>      <p>
+              <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+              This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\+xml".
+            </p>
+            <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="mimetype-example" class="form-element-label">Enter a custom MIME type</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="application/zip"
+                    id="mimetype-example"
+                    
+                    data-action="match-mimetype"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct MIME type">
+            Please enter correct MIME type
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="mimetype-prefix-example" class="form-element-label">MIME type prefix</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="application"
+                    id="mimetype-prefix-example"
+                    
+                    data-action="match-mimetype-prefix"
+                    value="application"
+                  /></div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="mimetype-additional-example" class="form-element-label">List of custom MIME types</label>
+                  <input
+                    type="text"
+                    class="input-text "
+                    placeholder="zip, vnd.ms-excel"
+                    id="mimetype-additional-example"
+                    
+                    data-action="match-mimetype-additional"
+                    value="zip"
+                  /></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isNumbersOnly">isNumbersOnly<a class="content-title-link" href="#isNumbersOnly" data-nav-url="#isNumbersOnly" data-action="content-title-link"> #</a></h2>
+            <p>Verify a string to find out if it includes only numbers or not.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'12345678901234567890'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="numbers-example" class="form-element-label">Enter numbers</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="1234567890"
+                  id="numbers-example"
+                  
+                  data-action="match-numbers"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct numbers">
+            Please enter correct numbers
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isMongoId">isMongoId<a class="content-title-link" href="#isMongoId" data-nav-url="#isMongoId" data-action="content-title-link"> #</a></h2>
+            <p>Verify mongodb id (that is ObjectId type). You can use two names that are aliases isObjectId and isMongoId. Theoretically, ObjectId is just a string contains numbers from 0 to 9, letters a, b, c, d, f and has length 24. Some strings could look not like typical MongoDB id, but are still correct for the regex pattern.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectObjectId</span> <span class="pl-c1">=</span> <span class="pl-en">isObjectId</span><span class="pl-kos">(</span><span class="pl-s">'5f17d5d2040de74f301f686f'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'abcdf1234012345678901234'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="mongoid-example" class="form-element-label">Enter an object or mongo id</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="5f17d5d2040de74f301f686f"
+                  id="mongoid-example"
+                  
+                  data-action="match-mongoid"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct object or mongo id">
+            Please enter correct object or mongo id
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isRomanNumber">isRomanNumber<a class="content-title-link" href="#isRomanNumber" data-nav-url="#isRomanNumber" data-action="content-title-link"> #</a></h2>
+            <p>Verify a roman numbers using "isRomanNumber" function.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'X'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'IIX'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="roman-number-example" class="form-element-label">Enter a roman number</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="VII"
+                  id="roman-number-example"
+                  
+                  data-action="match-roman-number"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct roman number">
+            Please enter correct roman number
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isTwitterHandle">isTwitterHandle<a class="content-title-link" href="#isTwitterHandle" data-nav-url="#isTwitterHandle" data-action="content-title-link"> #</a></h2>
+            <p>Verify a twitter handle using "isTwitterHandle" function. Handle's length should be less than 15, handle can include letters, numbers and underscore.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_smith09'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_$mith09'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="twitter-example" class="form-element-label">Enter a twitter handle</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="john_doe23"
+                  id="twitter-example"
+                  
+                  data-action="match-twitter"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct twitter handle">
+            Please enter correct twitter handle
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isLinkedInProfileUrl">isLinkedInProfileUrl<a class="content-title-link" href="#isLinkedInProfileUrl" data-nav-url="#isLinkedInProfileUrl" data-action="content-title-link"> #</a></h2>
+            <p>
+              Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+              Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+              Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+            </p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/johnsmith/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'http://ca.linkedin.com/in/johnsmith'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/jo/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="linkedin-example" class="form-element-label">Enter a LinkedIn profile URL</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="https://www.linkedin.com/in/johndoe/"
+                  id="linkedin-example"
+                  
+                  data-action="match-linkedin"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct LinkedIn profile URL">
+            Please enter correct LinkedIn profile URL
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isFacebookProfileUrl">isFacebookProfileUrl<a class="content-title-link" href="#isFacebookProfileUrl" data-nav-url="#isFacebookProfileUrl" data-action="content-title-link"> #</a></h2>
+            <p>
+              Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+              Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+              Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+            </p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john.smith01/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="facebook-example" class="form-element-label">Enter a Facebook profile URL</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  placeholder="https://www.facebook.com/john.doe01/"
+                  id="facebook-example"
+                  
+                  data-action="match-facebook"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct Facebook profile URL">
+            Please enter correct Facebook profile URL
+          </div>
+      </div></div><div class="content-wrapper">
+        <h2 id="isSlug">isSlug<a class="content-title-link" href="#isSlug" data-nav-url="#isSlug" data-action="content-title-link"> #</a></h2>
+            <p>
+              Verify a slug from URL. Add custom separator using second argument ('-' by default). Add custom language using third argument (by default 'en'). It's better to avoid specific characters for latin letters, but sometimes it's the case. Supported languages: english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'.<br>
+              Optional: a separator.
+            </p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word-and-word'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word_and_word'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'слово_и_слово'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">,</span> <span class="pl-s">'ru'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+                </pre>
+      </div>      <div class="flex-row flex-wrap">
+      <div class="form-element-wrapper" form-element-wrapper>
+            <label for="slug-example" class="form-element-label">Enter a slug</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="word-and-word"
+                    id="slug-example"
+                    
+                    data-action="match-slug"
+                    
+                  />    <div class="form-element-error" form-element-error form-default-error-message="Please enter correct slug">
+            Please enter correct slug
+          </div>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="slug-separator-example" class="form-element-label">Slug separator</label>
+                  <input
+                    type="text"
+                    class="input-text mr-16"
+                    placeholder="-"
+                    id="slug-separator-example"
+                    
+                    data-action="match-slug-separator"
+                    value="-"
+                  /></div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="slug-language-example" class="form-element-label">Slug language</label>
+        <select
+          class="form-select "
+          id="slug-language-example"
+          
+          data-action="match-slug-language"
+          value="en"
+        >
+                        <option value="en">English</option>
+                        <option value="de">German</option>
+                        <option value="es">Spanish</option>
+                        <option value="ru">Russian</option>
+                        <option value="ua">Ukrainian</option>
+                        <option value="fr">French</option>
+        </select></div>      </div>
+    </div><div class="content-wrapper">
+        <h2 id="isEmojiOnly">isEmojiOnly<a class="content-title-link" href="#isEmojiOnly" data-nav-url="#isEmojiOnly" data-action="content-title-link"> #</a></h2>
+            <p>Verify a string to find out if it includes only emoji or not. There is a build in regex for emoji <strong>/\p{Emoji_Presentation}/gu</strong> that can be used insteaf of isEmojiOnly function with custom regular expression.</p>
+      <div class="code-example-wrapper ">
+                <pre>
+                  <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'😀💩👀'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'asdqwertyvbn'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+                  <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'123👨🏻👩🏻456'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+                </pre>
+      </div><div class="form-element-wrapper" form-element-wrapper>
+            <label for="emoji-example" class="form-element-label">Enter emoji</label>
+                <input
+                  type="text"
+                  class="input-text "
+                  
+                  id="emoji-example"
+                  
+                  data-action="match-emoji"
+                  
+                />    <div class="form-element-error" form-element-error form-default-error-message="Please enter only emoji">
+            Please enter only emoji
+          </div>
+      </div></div>  </main>
     <script src='./public/regexies/regexies.js'></script>
+    <script src='./public/js/scripts.js'></script>
     <script src='./index.js'></script>  </body>
 </html>

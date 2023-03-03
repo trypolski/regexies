@@ -1,0 +1,122 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+  &.column {
+    .form-wrapper-partial {
+      display: flex;
+      flex-direction: column;
+
+      .flex-row {
+        .form-element-wrapper {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+  &.row {
+    .form-wrapper-partial {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .form-element-wrapper {
+        margin-right: 16px;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .form-wrapper-error {
+    display: none;
+    font-size: 14px;
+    color: $red;
+  }
+
+  &.has-error {
+    .form-wrapper-error {
+      display: block;
+    }
+  }
+
+  &.bordered {
+    padding: 24px;
+    border: 1px solid $primary-bg;
+    border-radius: 8px;
+  }
+}
+
+.form-element-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+
+  > * {
+    margin-bottom: 8px;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &.row {
+    flex-direction: row;
+    > * {
+      margin-right: 8px;
+    }
+  
+    :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .form-element-error {
+    display: none;
+    font-size: 14px;
+    color: $red;
+  }
+
+  &.has-error {
+    .form-element-error {
+      display: block;
+    }
+  
+    .input-text,
+    .input-number {
+      border-color: $red;
+      color: $red
+    }
+  }
+}
+
+.input-text,
+.input-number,
+.form-select {
+  height: 40px;
+  color: $primary;
+  font-size: 16px;
+  font-family: $lato;
+  border: 1px solid $primary-bg;
+  border-radius: 8px;
+  background-color: $white;
+  transition: all 0.3s linear;
+  max-width: 400px;
+}
+
+.input-text {
+  padding-left: 16px;
+  width: 200px;
+}
+
+.form-select {
+  height: 42px;
+  padding-left: 8px;
+  max-width: 184px;
+}
+
+.input-number {
+  padding: 0 16px;
+  max-width: 80px;
+}

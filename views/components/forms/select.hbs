@@ -1,0 +1,28 @@
+{{!-- 
+  Select
+  @dataAction (string): text for data-action attribute
+  @id (string): text for id value
+  @name (string): text for name value
+  @classNames (string): additional CSS classes
+  @value (string): initial value of input
+  @options (Array): list of options
+  @placeholderText (string): placeholder option
+--}}
+<select
+  class="form-select {{classNames}}"
+  {{#if id}}id="{{id}}"{{/if}}
+  {{#if name}}name="{{name}}"{{/if}}
+  {{#if dataAction}}data-action="{{dataAction}}"{{/if}}
+  {{#if value}}value="{{value}}"{{/if}}
+>
+  {{#if options}}
+    {{#if placeholderText}}
+      <option value="">{{placeholderText}}</option>
+    {{/if}}
+    {{#each options}}
+      <option value="{{value}}">{{label}}</option>
+    {{/each}}
+  {{else}}
+    {{> @partial-block}}
+  {{/if}}
+</select>

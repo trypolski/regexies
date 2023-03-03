@@ -1,0 +1,7 @@
+{{!-- 
+  JS script importer before </body> tag
+  @pathToPublic (string): path to public directory 
+--}}
+<script src='{{#if pathToPublic}}{{pathToPublic}}{{else}}../public{{/if}}/regexies/regexies.js'></script>
+<script src='{{#if pathToPublic}}{{pathToPublic}}{{else}}../public{{/if}}/js/scripts.js'></script>
+<script src='./index.js'></script>

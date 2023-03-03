@@ -1,9 +1,11 @@
 {
   "name": "regexies",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Ready to use JavaScript regex you need!",
   "main": "index.js",
   "scripts": {
+    "start": "webpack serve --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js",
     "test": "mocha"
   },
   "repository": {
@@ -27,7 +29,23 @@
   },
   "homepage": "https://github.com/trypolski/regexies#readme",
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "glob": "^8.0.3",
+    "handlebars-webpack-plugin": "^2.2.1",
+    "jest": "^29.3.1",
+    "mini-css-extract-plugin": "^2.7.2",
+    "mocha": "^8.2.1",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.0",
+    "sass-true": "^6.1.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   },
   "files": [
     "index.js",

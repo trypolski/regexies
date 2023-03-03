@@ -1,0 +1,14 @@
+{
+  "development": {
+    "mode": "development",
+    "port": "8080",
+    "baseUrl": "http://localhost:8080/",
+    "staticAssetsPath": "public/assets/"
+  },
+  "production": {
+    "mode": "production",
+    "port": "8080",
+    "baseUrl": "https://trypolski.github.io/regexies/",
+    "staticAssetsPath": "public/assets/"
+  }
+}

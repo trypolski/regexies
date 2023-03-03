@@ -1,0 +1,16 @@
+{{!-- 
+  Input checkbox
+  @dataAction (string): text for data-action attribute
+  @id (string): text for id value
+  @name (string): text for name value
+  @classNames (string): additional CSS classes
+  @checked (boolean): initial value of input
+--}}
+<input
+  type="checkbox"
+  class="input-checkbox {{classNames}}"
+  {{#if id}}id="{{id}}"{{/if}}
+  {{#if name}}name="{{name}}"{{/if}}
+  {{#if dataAction}}data-action="{{dataAction}}"{{/if}}
+  {{#if checked}}checked{{/if}}
+/>

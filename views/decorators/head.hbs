@@ -1,0 +1,22 @@
+{{!-- 
+  Head tag content
+  @title (string): text for <title></title>
+  @description (string): text for <meta name="description" content="{{description}}">
+  @keywords (string): list of keywords for <meta name="keywords" content="{{keywords}}">
+  @pathToPublic (string): path to public directory 
+--}}
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="keywords" content="{{keywords}}">
+  {{!--
+  <link rel="shortcut icon" href="public/assets/favicon.ico">
+  <link rel="icon" type="image/png" href="public/assets/favicon.png">
+  --}}
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{#if pathToPublic}}{{pathToPublic}}{{else}}../public{{/if}}/css/styles.css">
+  <link rel="stylesheet" href="./index.css">
+</head>

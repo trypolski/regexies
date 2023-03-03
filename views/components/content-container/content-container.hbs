@@ -1,0 +1,12 @@
+{{!-- 
+  Content container
+  @titleId (string): title id that also used as a link to container
+  @hideTitle (boolean): show or not h2 title
+  @title (string): text for id value
+--}}
+<div class="content-wrapper">
+  {{#unless hideTitle}}
+    <h2 id="{{titleId}}">{{title}}<a class="content-title-link" href="#{{titleId}}" data-nav-url="#{{titleId}}" data-action="content-title-link"> #</a></h2>
+  {{/unless}}
+  {{> @partial-block}}
+</div>

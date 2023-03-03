@@ -1,0 +1,26 @@
+{{!-- 
+  Page layout
+  @title (string): text for <title></title>
+  @description (string): text for <meta name="description" content="{{description}}">
+  @keywords (string): list of keywords for <meta name="keywords" content="{{keywords}}">
+  @pathToPublic (string): path to public directory
+  @hideNavigation (boolean): show or hide navigation sidebar.
+--}}
+<!DOCTYPE html>
+<html lang="en">
+  {{> decorators/head
+    title=title
+    description=description
+    keywords=keywords
+    pathToPublic=pathToPublic
+  }}
+  <body class="{{#unless hideNavigation}}has-sidebar{{/unless}}">
+    {{#unless hideNavigation}}
+      <header>
+        {{> navigation/navigation}}
+      </header>
+    {{/unless}}
+    {{> @partial-block }}
+    {{> decorators/scripts-importer pathToPublic=pathToPublic }}
+  </body>
+</html>

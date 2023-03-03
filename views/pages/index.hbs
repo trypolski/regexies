@@ -1,0 +1,1103 @@
+{{#> decorators/page
+  title="Regexies documentation"
+  description="The library includes a list of popular regex functions for every project usage. You can use special builder functions to create your own regexes."
+  keywords="regular, expressions, regex, regexp, match, regular expressions, js regex, javascript regex"
+  pathToPublic="./public"
+}}
+  <main>
+    <h1>Regexies documentation</h1>
+    {{!-- 
+      is function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="is"
+      title="is"
+    }}
+      <p>Use this function to create your own regex and check a string. This function is a wrapper function for <a href="#createIs" data-nav-url="#createIs" data-action="content-title-link">createIs</a> and build in method .test of Regex class. To make your code less expensive just use <a href="#createIs" data-nav-url="#createIs" data-action="content-title-link">createIs</a> to generate regex.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-c">/**</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">String</span>} string String to check</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Object | Array</span>} userOptions Option object or array of option objects</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Boolean</span>} checkOptionsInput Check type of option values, by default set to "false"</span>
+          <span class="pl-c"> * <span class="pl-k">@return</span> {<span class="pl-smi">Boolean</span>}</span>
+          <span class="pl-c"> */</span>
+          <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">,</span> <span class="pl-s1">userOptions</span><span class="pl-kos">,</span> <span class="pl-s1">checkOptionsInput</span><span class="pl-kos">)</span>
+      </pre>
+      {{/code-example/code-example}}
+      <p>Second argument of the function could be object or array of objects with option parameters.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-c1">IS_DEFAULT_OPTIONS</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+          <span class="pl-c1">numbers</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match numbers 0-9</span>
+          <span class="pl-c1">lettersCountry</span>: <span class="pl-s">'en'</span><span class="pl-kos">,</span> <span class="pl-c">// {String} A country code to specify supported letters, English by default</span>
+          <span class="pl-c1">lettersAll</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match lowercase and uppercase letters</span>
+          <span class="pl-c1">lettersCapital</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match uppercase letters</span>
+          <span class="pl-c1">lettersLowercase</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} match lowercase letters</span>
+          <span class="pl-c1">minLength</span>: <span class="pl-c1">undefined</span><span class="pl-kos">,</span> <span class="pl-c">// {Number} set min length of mathing group</span>
+          <span class="pl-c1">maxLength</span>: <span class="pl-c1">undefined</span><span class="pl-kos">,</span> <span class="pl-c">// {Number} set max length of mathing group</span>
+          <span class="pl-c1">specialCharacters</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} set special characters in the string (escape "\"), the function automatically escapes needed characters</span>
+          <span class="pl-c1">optional</span>: <span class="pl-c1">false</span><span class="pl-kos">,</span> <span class="pl-c">// {Boolean} mark a matching group as optional</span>
+          <span class="pl-c1">exact</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} put string that should exactly match, the function automatically escapes needed characters</span>
+          <span class="pl-c1">range</span>: <span class="pl-s">''</span><span class="pl-kos">,</span> <span class="pl-c">// {String} put string that includes range to match (as '0-9', 'a-z'), the function doesn't automatically escape symbols</span>
+          <span class="pl-kos">}</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>
+        More about options:<br>
+        <strong>lettersCountry</strong> - specify letters of which country should be supported. By default the function supports English, but to match any letters you need to add one of options lettersAll, lettersCapital, lettersLowercase.<br>
+        <strong>Supported languages:</strong> english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'. More countries will be added in the future, it just takes a lot of time to figure out which letters should be included to regex.<br>
+        <strong>lettersAll</strong> - this option has higher priority and overwrites lettersCapital, lettersLowercase.<br>
+        <strong>minLength</strong> - if maxLength value isn't set it will match from min to any length.<br>
+        <strong>maxLength</strong> - if minLength value isn't set it will match from 0 to max.<br>
+        <strong>specialCharacters</strong> - a string that includes all special characters like "'!?§$%&/". All characters will be automatically escaped by the function, but don't forget to escape "" manually (specialCharacters: '\' to add backslash).<br>
+        <strong>exact</strong> - ignores all options except optional.<br>
+        <strong>range</strong> - ignores other options, but exact has higher priority<br>
+      </p>
+      <p>Example:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">options</span> <span class="pl-c1">=</span> <span class="pl-kos">[</span>
+          <span class="pl-kos">{</span> <span class="pl-c1">exact</span>: <span class="pl-s">'http://www.google.com/'</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+          <span class="pl-kos">{</span> <span class="pl-c1">lettersLowercase</span>: <span class="pl-c1">true</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+          <span class="pl-kos">{</span> <span class="pl-c1">specialCharacters</span>: <span class="pl-s">'/'</span><span class="pl-kos">,</span> <span class="pl-c1">minLength</span>: <span class="pl-c1">1</span><span class="pl-kos">,</span> <span class="pl-c1">maxLength</span>: <span class="pl-c1">1</span> <span class="pl-kos">}</span><span class="pl-kos">,</span>
+          <span class="pl-kos">{</span> <span class="pl-c1">numbers</span>: <span class="pl-c1">true</span><span class="pl-kos">,</span> <span class="pl-c1">optional</span>: <span class="pl-c1">true</span> <span class="pl-kos">}</span>
+          <span class="pl-kos">]</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/asd/0098767899'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/asd/'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'http://www.google.com/ASD/588766'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isResult</span> <span class="pl-c1">=</span> <span class="pl-en">is</span><span class="pl-kos">(</span><span class="pl-s">'https://www.google.com/asdas/678'</span><span class="pl-kos">,</span> <span class="pl-s1">options</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+    {{/content-container/content-container}}
+    {{!-- 
+      createIs function example
+    --}}
+    {{#> content-container/content-container
+      titleId="createIs"
+      title="createIs"
+    }}
+      <p>This function generates regex based on options. This function uses the same option parameters as <a href="#is" data-nav-url="#is" data-action="content-title-link">is</a> function.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-c">/**</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Object | Array</span>} userOptions Option object or array of option objects</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">Boolean</span>} checkOptionsInput Check type of option values, by default set to "false"</span>
+          <span class="pl-c"> * <span class="pl-k">@return</span> {<span class="pl-smi">instanceof Regex</span>}</span>
+          <span class="pl-c"> */</span>
+          <span class="pl-en">createIs</span><span class="pl-kos">(</span><span class="pl-s1">userOptions</span><span class="pl-kos">,</span> <span class="pl-s1">checkOptionsInput</span><span class="pl-kos">)</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>To test the "createIs" you can use our rules constructor with up to 5 rules (this restriction applies only for the demo, current function implementation has no limits):</p>
+      <div class="mb-16" data-action="create-is-rules-list"></div>
+      <div class="create-is-rule-item hidden bordered px-16 py-8 my-8" data-action="create-is-rule-item-example">
+        <span>Rule id: <span data-action="create-is-rule-item-index"></span></span>
+        {{> buttons/button-close
+          title="Delete rule"
+          dataAction="create-is-delete-rule"
+        }}
+      </div>
+      {{> buttons/button
+        text="Add a rule"
+        dataAction="create-is-add-rule"
+      }}
+      {{!-- Add createIs rule form --}}
+      {{#> forms/form-wrapper
+        formClassNames="hidden bordered my-16"
+        dataAction="create-is-form"
+      }}
+        <div class="flex-row flex-wrap">
+          {{!-- createIs -> Allow numbers checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-number"
+            labelText="Allow numbers"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              id="create-is-number"
+              name="numbers"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Optional checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-optional"
+            labelText="Rules are optional"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              id="create-is-optional"
+              name="optional"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row  flex-wrap">
+          {{!-- createIs -> Allow upper/lowercase letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-all"
+            labelText="Allow capital/lowercase letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-all"
+              name="lettersAll"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Allow capital letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-capital"
+            labelText="Allow capital letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-capital"
+              name="lettersCapital"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Allow lowercase letters checkbox --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-letters-lowercase"
+            labelText="Allow lowercase letters"
+            showLabelAfter=true
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              data-action="create-is-letters"
+              id="create-is-letters-lowercase"
+              name="lettersLowercase"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row flex-wrap">
+          {{!-- createIs -> Language select --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-language"
+            labelText="Allow letters by language"
+            hideError=true
+          }}
+            {{#> forms/select
+              id="create-is-language"
+              name="lettersCountry"
+              value="en"
+            }}
+              <option value="en">English</option>
+              <option value="de">German</option>
+              <option value="es">Spanish</option>
+              <option value="ru">Russian</option>
+              <option value="ua">Ukrainian</option>
+              <option value="fr">French</option>
+            {{/forms/select}}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Min length input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-min-length"
+            labelText="Min length"
+            hideError=true
+          }}
+            {{> forms/input-number
+              id="create-is-min-length"
+              name="minLength"
+              min=0
+              value=undefined
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Max length input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-min-length"
+            labelText="Max length"
+            hideError=true
+          }}
+            {{> forms/input-number
+              id="create-is-min-length"
+              name="maxLength"
+              min=1
+              value=undefined
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Special characters input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-special-characters"
+            labelText="Special characters"
+          }}
+            {{> forms/input-text
+              id="create-is-special-characters"
+              name="specialCharacters"
+              placeholderText="Enter special charachters"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row flex-wrap">
+          {{!-- createIs -> Exact match input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-exact"
+            labelText="Exactly match string"
+          }}
+            {{> forms/input-text
+              id="create-is-exact"
+              name="exact"
+              placeholderText="Enter a text"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+          {{!-- createIs -> Regex range input --}}
+          {{#> forms/form-element-wrapper
+            id="create-is-range"
+            labelText="Regex range"
+          }}
+            {{> forms/input-text
+              id="create-is-range"
+              name="range"
+              placeholderText="Enter a range as 0-9 or a-z"
+              value=""
+            }}
+          {{/forms/form-element-wrapper}}
+        </div>
+        <div class="flex-row flex-wrap">
+          {{> buttons/button
+            classNames="primary mr-16"
+            text="Save"
+            dataAction="create-is-save-rule"
+          }}
+          {{> buttons/button
+            text="Cancel"
+            dataAction="create-is-cancel-rule"
+          }}
+        </div>
+      {{/forms/form-wrapper}}
+      <p class="pt-24">Test your custom createIs regex <span data-action="create-is-regex"></span> created using rules above.</p>
+      {{#> forms/form-element-wrapper
+        id="create-is-example"
+        labelText="Enter some text here"
+        errorText="A string doesn't match your created regex"
+      }}
+        {{> forms/input-text
+          dataAction="create-is-example"
+          id="create-is-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!--
+      escape function example
+    --}}
+    {{#> content-container/content-container
+      titleId="escape"
+      title="Escape"
+    }}
+      <h3 class="pt-16">escapeShort and escapeLong functions</h3>
+      <p>Use escapeShort to escape strings with length <= 60 and escapeLong for strings longer than 60 symbols.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-c">/**</span>
+          <span class="pl-c"> * <span class="pl-k">@param</span>  {<span class="pl-smi">String</span>} string String to escape</span>
+          <span class="pl-c"> */</span>
+          <span class="pl-en">escapeShort</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">)</span> <span class="pl-c">// custom function with for loop</span>
+          <span class="pl-en">escapeLong</span><span class="pl-kos">(</span><span class="pl-s1">string</span><span class="pl-kos">)</span>  <span class="pl-c">// string.replace(/[\.\^\$\*\+\?\(\)\[\]\{\}\\\|\/\-]/g, '\\$&amp;');</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>Use this function to escape special characters that should be escaped in Regex. The function decides which helper function to use escapeShort or escapeLong depends on length of the string.</p>
+      <p><strong>Result: </strong><span data-action="escape-example-result"></span></p>
+      {{#> forms/form-element-wrapper
+        id="escape-example"
+        labelText="Enter some special characters"
+      }}
+        {{> forms/input-text
+          dataAction="escape-example-input"
+          id="escape-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isEmail function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isEmail"
+      title="isEmail"
+    }}
+      <p>Verify email address using "isEmail" function. This function checks common addresses, but doesn't include all possible names. If your project should support specific email addresses, it's better to create your own extended regex.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectEmail</span> <span class="pl-c1">=</span> <span class="pl-en">isEmail</span><span class="pl-kos">(</span><span class="pl-s">'email@address.com'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectEmail</span> <span class="pl-c1">=</span> <span class="pl-en">isEmail</span><span class="pl-kos">(</span><span class="pl-s">'email@address.c'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="email-example"
+        labelText="Enter an email"
+        errorText="Please enter correct email address"
+      }}
+        {{> forms/input-text
+          dataAction="match-email"
+          id="email-example"
+          placeholderText="email@site.com"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isPassword function example
+    --}}
+    {{#> content-container/content-container
+      titleId="isPassword"
+      title="isPassword"
+    }}
+      <p>Verify passwords using "isPassword" function. By default password's length should be 8-30 and !"§$%&()=?*+#,.;:_- are allowed symbols.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'asdsa%&amp;()=123'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;a'</span><span class="pl-kos">)</span> <span class="pl-c">// false (too short)</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;aasdasdajhdawzdgaw56789asdaskdjn?*+#,.;'</span><span class="pl-kos">)</span> <span class="pl-c">// false (too long)</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend current function changing min/max length and add your own set of supported symbols isPassword(password, minLength, maxLength, customSetOfSymbols)</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'!"§$%&amp;aasdasdajhdawzdgaw56789asdaskdjn?*+#,.;'</span><span class="pl-kos">,</span> <span class="pl-c1">8</span><span class="pl-kos">,</span> <span class="pl-c1">60</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc°'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">20</span><span class="pl-kos">,</span> <span class="pl-s">'°'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-c">// but</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectPassword</span> <span class="pl-c1">=</span> <span class="pl-en">isPassword</span><span class="pl-kos">(</span><span class="pl-s">'123abc°!'</span><span class="pl-kos">,</span> <span class="pl-c1">5</span><span class="pl-kos">,</span> <span class="pl-c1">20</span><span class="pl-kos">,</span> <span class="pl-s">'°'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <h3 class="py-8">Default password function</h3>
+      {{#> forms/form-element-wrapper
+        id="password-default-example"
+        labelText="Enter a password"
+        errorText="Password's length should be 8-30 and !\"§$%&()=?*+#,.;:_- are allowed symbols"
+      }}
+        {{> forms/input-text
+          dataAction="match-default-password"
+          id="password-default-example"
+          placeholderText="Password"
+        }}
+      {{/forms/form-element-wrapper}}
+      {{!-- 
+        Custom password options
+      --}}
+      <h3>Custom password function</h3>
+      <p>Create your own password using min/max length and allowed symbols options.</p>
+      {{#> forms/form-wrapper
+        dataAction="custom-password-form"
+        isRow=true
+      }}
+        {{!-- isPassword custom -> Min input --}}
+        {{#> forms/form-element-wrapper
+          id="min-length-custom-password"
+          labelText="Min length"
+          hideError=true
+        }}
+          {{> forms/input-number
+            id="min-length-custom-password"
+            name="minLengthPassword"
+            min=1
+            value=8
+          }}
+        {{/forms/form-element-wrapper}}
+        {{!-- isPassword custom -> Max input --}}
+        {{#> forms/form-element-wrapper
+          id="max-length-custom-password"
+          labelText="Max length"
+          hideError=true
+        }}
+          {{> forms/input-number
+            id="max-length-custom-password"
+            name="maxLengthPassword"
+            min=2
+            value=16
+          }}
+        {{/forms/form-element-wrapper}}
+        {{!-- isPassword custom -> Special characters input --}}
+        {{#> forms/form-element-wrapper
+          id="allowed-characters-custom-password"
+          labelText="Special characters"
+        }}
+          {{> forms/input-text
+            id="allowed-characters-custom-password"
+            name="specialCharactersPassword"
+            placeholderText="Enter allowed charachters"
+            value="!\"§$%&()=?*+#,.;:_-"
+          }}
+        {{/forms/form-element-wrapper}}
+      {{/forms/form-wrapper}}
+      {{!-- isPassword custom -> Test custom password input --}}
+      {{#> forms/form-element-wrapper
+        id="password-custom-example"
+        labelText="Test a custom password"
+        errorText="Password's length should be between {min}-{max} and {character} are allowed symbols"
+      }}
+        {{> forms/input-text
+          dataAction="match-custom-password"
+          id="password-custom-example"
+          placeholderText="Custom password"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isUuid function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isUuid"
+      title="isUuid"
+    }}
+      <p>Verify uuid string using "isUuid" function. By default the function supports all versions of uuid.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'e56ef521-03b3-4664-8e69-982729ebe460'</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 4)</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcae-c961-11ea-87d0-0242ac130003'</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 1)</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuid</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcaec96111ea-87d0-0242ac130003'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>Just add second argument as true, to exclude support of other uuid versions except version 4.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuidV4</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'e56ef521-03b3-4664-8e69-982729ebe460'</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-c">// true (version 4)</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUuidV4</span> <span class="pl-c1">=</span> <span class="pl-en">isUuid</span><span class="pl-kos">(</span><span class="pl-s">'b5fafcae-c961-11ea-87d0-0242ac130003'</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-c">// false (version 1)</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="uuid-example"
+          labelText="Enter an UUID"
+          errorText="Please enter correct UUID"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-uuid"
+            id="uuid-example"
+            placeholderText="b1170a5d-7a2f-4872-b4ac-b6606295b2db"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+            id="uuid-v4-example"
+            labelText="Only UUID v4"
+            hideError=true
+          }}
+            {{> forms/input-checkbox
+              dataAction="match-uuid-v4"
+              id="uuid-v4-example"
+              name="uuidv4"
+              checked=false
+            }}
+          {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isBearer function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isBearer"
+      title="isBearer"
+    }}
+      <p>Verify Authorization header data that looks like "Bearer {token}" using "isBearer" function.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'BearereyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectBearer</span> <span class="pl-c1">=</span> <span class="pl-en">isBearer</span><span class="pl-kos">(</span><span class="pl-s">'"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI"'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="bearer-example"
+        labelText="Enter a bearer token"
+        errorText="Please enter correct bearer token"
+      }}
+        {{> forms/input-text
+          dataAction="match-bearer-token"
+          id="bearer-example"
+          placeholderText="Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isJwt function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isJwt"
+      title="isJwt"
+    }}
+      <p>Verify value of JWT token using "isJwt" function. There is a way to create more strict regex to check Base64Url encoded data string for JWT token. Regexies allows not only "." symbol in encoded string, but some additional symbols as required for Base64Url encoded data.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA.as1'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectJwt</span> <span class="pl-c1">=</span> <span class="pl-en">isJwt</span><span class="pl-kos">(</span><span class="pl-s">'"eyJ.eyJhbGciOiJIUzI1NiIsInR5c.CI6IkpXVCJ98zg4B6rUYA"'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="jwt-example"
+        labelText="Enter a JWT token"
+        errorText="Please enter correct JWT token"
+      }}
+        {{> forms/input-text
+          dataAction="match-jwt-token"
+          id="jwt-example"
+          placeholderText="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isUrl function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isUrl"
+      title="isUrl"
+    }}
+      <p>Verify URLs using "isUrl" function. By default "http" or "https" prefix is required, but you can always disable it adding second argument to the function as "false".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'http://google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'google.com/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-c">// but</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'www.google.com'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isUrl</span><span class="pl-kos">(</span><span class="pl-s">'&amp;google.com'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="url-example"
+          labelText="Enter an URL"
+          errorText="Please enter correct URL"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-url"
+            id="url-example"
+            placeholderText="http://site.com/"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="url-protocol-example"
+          labelText="Make http:// and https:// optional "
+          hideError=true
+        }}
+          {{> forms/input-checkbox
+            dataAction="match-url-protocol"
+            id="url-protocol-example"
+            name="url-protocol"
+            checked=false
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isHexColor function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isHexColor"
+      title="isHexColor"
+    }}
+      <p>Verify css colors using "isHexColor" function. By default hex color should start with "#" symbol, but you can disable it adding second argument to the function as "false".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#fFf111'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#000'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'#000qff'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000000'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+          <span class="pl-c">// but</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000FFF'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'000'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectHexColor</span> <span class="pl-c1">=</span> <span class="pl-en">isHexColor</span><span class="pl-kos">(</span><span class="pl-s">'00W880'</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="hex-color-example"
+          labelText="Enter a hex color"
+          errorText="Please enter correct hex color"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-hex-color"
+            id="hex-color-example"
+            placeholderText="#FFF111"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="hex-color-hash-example"
+          labelText="Without #"
+          hideError=true
+        }}
+          {{> forms/input-checkbox
+            dataAction="match-hex-color-hash"
+            id="hex-color-hash-example"
+            name="url-protocol"
+            checked=false
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isImageMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isImageMimetype"
+      title="isImageMimetype"
+    }}
+      <p>Verify MIME type of image files using "isImageMimetype" function. By default the function allows "image/png", "image/jpeg", and "image/gif".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/png'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/x-icon'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-icon'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>If you want to add support of "image/svg+xml" you need to add additional escaping as:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectImageType</span> <span class="pl-c1">=</span> <span class="pl-en">isImageMimetype</span><span class="pl-kos">(</span><span class="pl-s">'image/svg+xml'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'png'</span><span class="pl-kos">,</span> <span class="pl-s">'jpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'svg\\+xml'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>
+        <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+        Be careful, the possibility to upload svg files isn't safe for your project(svg files could include js code). Don't allow extensions you are not sure about.
+      </p>
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="image-mimetype-example"
+          labelText="Enter an image MIME type"
+          errorText="Please enter correct image MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-image-mimetype"
+            id="image-mimetype-example"
+            placeholderText="image/png"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="image-mimtype-additional-example"
+          labelText="List of image MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-image-mimetype-additional"
+            id="image-mimtype-additional-example"
+            placeholderText="png, jpeg, x-icon"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isAudioMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isAudioMimetype"
+      title="isAudioMimetype"
+    }}
+      <p>Verify MIME type of audio files using "isAudioMimetype" function. By default the function allows only "audio/mpeg".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/mpeg'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectAudioType</span> <span class="pl-c1">=</span> <span class="pl-en">isAudioMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-aiff'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-aiff'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="audio-mimetype-example"
+          labelText="Enter an audio MIME type"
+          errorText="Please enter correct audio MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-audio-mimetype"
+            id="audio-mimetype-example"
+            placeholderText="audio/mpeg"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="audio-mimtype-additional-example"
+          labelText="List of audio MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-audio-mimetype-additional"
+            id="audio-mimtype-additional-example"
+            placeholderText="mpeg, x-aiff"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isVideoMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isVideoMimetype"
+      title="isVideoMimetype"
+    }}
+      <p>Verify MIME type of video files using "isVideoMimetype" function. By default the function allows "video/mpeg", "video/mp4", and "video/quicktime".</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/mp4'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>You can extend the list of supported extensions. Add array of custom extenstions as second argument to the function:</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectVideoType</span> <span class="pl-c1">=</span> <span class="pl-en">isVideoMimetype</span><span class="pl-kos">(</span><span class="pl-s">'audio/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'mpeg'</span><span class="pl-kos">,</span> <span class="pl-s">'x-msvideo'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="video-mimetype-example"
+          labelText="Enter a video MIME type"
+          errorText="Please enter correct video MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-video-mimetype"
+            id="video-mimetype-example"
+            placeholderText="video/mp4"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="video-mimtype-additional-example"
+          labelText="List of video MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-video-mimetype-additional"
+            id="video-mimtype-additional-example"
+            placeholderText="mpeg, x-msvideo"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isMimetype function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isMimetype"
+      title="isMimetype"
+    }}
+      <p>Verify any MIME type of files using "isMimeType" function. By default this function works as "isImageMimetype", but you can extend it for every file type. Use second argument to set prefix as 'image' or 'application'. Add array of types as third argument.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'application/zip'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectType</span> <span class="pl-c1">=</span> <span class="pl-en">isMimetype</span><span class="pl-kos">(</span><span class="pl-s">'video/x-msvideo'</span><span class="pl-kos">,</span> <span class="pl-s">'application'</span><span class="pl-kos">,</span> <span class="pl-kos">[</span><span class="pl-s">'zip'</span><span class="pl-kos">,</span> <span class="pl-s">'vnd.ms-excel'</span><span class="pl-kos">]</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <p>
+        <g-emoji class="g-emoji" alias="exclamation" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png">❗</g-emoji>
+        This function give you more space, but it's not always good and safe. Try to use more strict functions as isImageMimetype/isAudioMimetype if it's possible. If type has specific symbols, escape them like "svg\+xml".
+      </p>
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="mimetype-example"
+          labelText="Enter a custom MIME type"
+          errorText="Please enter correct MIME type"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-mimetype"
+            id="mimetype-example"
+            placeholderText="application/zip"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="mimetype-prefix-example"
+          labelText="MIME type prefix"
+          hideError=true
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-mimetype-prefix"
+            id="mimetype-prefix-example"
+            placeholderText="application"
+            value="application"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="mimetype-additional-example"
+          labelText="List of custom MIME types"
+          hideError=true
+        }}
+          {{> forms/input-text
+            dataAction="match-mimetype-additional"
+            id="mimetype-additional-example"
+            placeholderText="zip, vnd.ms-excel"
+            value="zip"
+          }}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isNumbersOnly function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isNumbersOnly"
+      title="isNumbersOnly"
+    }}
+      <p>Verify a string to find out if it includes only numbers or not.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'12345678901234567890'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyNumbers</span> <span class="pl-c1">=</span> <span class="pl-en">isNumbersOnly</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="numbers-example"
+        labelText="Enter numbers"
+        errorText="Please enter correct numbers"
+      }}
+        {{> forms/input-text
+          dataAction="match-numbers"
+          id="numbers-example"
+          placeholderText="1234567890"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isObjectId/isMongoId function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isMongoId"
+      title="isMongoId"
+    }}
+      <p>Verify mongodb id (that is ObjectId type). You can use two names that are aliases isObjectId and isMongoId. Theoretically, ObjectId is just a string contains numbers from 0 to 9, letters a, b, c, d, f and has length 24. Some strings could look not like typical MongoDB id, but are still correct for the regex pattern.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectObjectId</span> <span class="pl-c1">=</span> <span class="pl-en">isObjectId</span><span class="pl-kos">(</span><span class="pl-s">'5f17d5d2040de74f301f686f'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'abcdf1234012345678901234'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectMongoId</span> <span class="pl-c1">=</span> <span class="pl-en">isMongoId</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="mongoid-example"
+        labelText="Enter an object or mongo id"
+        errorText="Please enter correct object or mongo id"
+      }}
+        {{> forms/input-text
+          dataAction="match-mongoid"
+          id="mongoid-example"
+          placeholderText="5f17d5d2040de74f301f686f"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isRomanNumber function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isRomanNumber"
+      title="isRomanNumber"
+    }}
+      <p>Verify a roman numbers using "isRomanNumber" function.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'X'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectRomanNumber</span> <span class="pl-c1">=</span> <span class="pl-en">isRomanNumber</span><span class="pl-kos">(</span><span class="pl-s">'IIX'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="roman-number-example"
+        labelText="Enter a roman number"
+        errorText="Please enter correct roman number"
+      }}
+        {{> forms/input-text
+          dataAction="match-roman-number"
+          id="roman-number-example"
+          placeholderText="VII"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isTwitterHandle function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isTwitterHandle"
+      title="isTwitterHandle"
+    }}
+      <p>Verify a twitter handle using "isTwitterHandle" function. Handle's length should be less than 15, handle can include letters, numbers and underscore.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_smith09'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectTwitterHandle</span> <span class="pl-c1">=</span> <span class="pl-en">isTwitterHandle</span><span class="pl-kos">(</span><span class="pl-s">'john_$mith09'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="twitter-example"
+        labelText="Enter a twitter handle"
+        errorText="Please enter correct twitter handle"
+      }}
+        {{> forms/input-text
+          dataAction="match-twitter"
+          id="twitter-example"
+          placeholderText="john_doe23"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isLinkedInProfileUrl function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isLinkedInProfileUrl"
+      title="isLinkedInProfileUrl"
+    }}
+      <p>
+        Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+        Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+        Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/johnsmith/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'http://ca.linkedin.com/in/johnsmith'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isLinkedInProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.linkedin.com/in/jo/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="linkedin-example"
+        labelText="Enter a LinkedIn profile URL"
+        errorText="Please enter correct LinkedIn profile URL"
+      }}
+        {{> forms/input-text
+          dataAction="match-linkedin"
+          id="linkedin-example"
+          placeholderText="https://www.linkedin.com/in/johndoe/"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isFacebookProfileUrl function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isFacebookProfileUrl"
+      title="isFacebookProfileUrl"
+    }}
+      <p>
+        Verify a LinkedIn profile URL using "isLinkedInProfileUrl" function.<br>
+        Optional: http, https, www, country 2-letter code, slash at the end, any specific characters.<br>
+        Strict: linkedin.com, /in/, 3-100 symbols length, can not include spaces.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john.smith01/'</span><span class="pl-kos">)</span> <span class="pl-c">// true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectProfileUrl</span> <span class="pl-c1">=</span> <span class="pl-en">isFacebookProfileUrl</span><span class="pl-kos">(</span><span class="pl-s">'https://www.facebook.com/john/'</span><span class="pl-kos">)</span> <span class="pl-c">// false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="facebook-example"
+        labelText="Enter a Facebook profile URL"
+        errorText="Please enter correct Facebook profile URL"
+      }}
+        {{> forms/input-text
+          dataAction="match-facebook"
+          id="facebook-example"
+          placeholderText="https://www.facebook.com/john.doe01/"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+    {{!-- 
+      isSlug function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isSlug"
+      title="isSlug"
+    }}
+      <p>
+        Verify a slug from URL. Add custom separator using second argument ('-' by default). Add custom language using third argument (by default 'en'). It's better to avoid specific characters for latin letters, but sometimes it's the case. Supported languages: english 'en', german 'de', spanish 'es', french 'fr', russian 'ru', ukrainian 'ua'.<br>
+        Optional: a separator.
+      </p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word-and-word'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'word_and_word'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'слово_и_слово'</span><span class="pl-kos">,</span> <span class="pl-s">'_'</span><span class="pl-kos">,</span> <span class="pl-s">'ru'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">isCorrectSlug</span> <span class="pl-c1">=</span> <span class="pl-en">isSlug</span><span class="pl-kos">(</span><span class="pl-s">'1a234567ssd890.'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+        </pre>
+      {{/code-example/code-example}}
+      <div class="flex-row flex-wrap">
+        {{#> forms/form-element-wrapper
+          id="slug-example"
+          labelText="Enter a slug"
+          errorText="Please enter correct slug"
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-slug"
+            id="slug-example"
+            placeholderText="word-and-word"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="slug-separator-example"
+          labelText="Slug separator"
+          hideError=true
+        }}
+          {{> forms/input-text
+            classNames="mr-16"
+            dataAction="match-slug-separator"
+            id="slug-separator-example"
+            placeholderText="-"
+            value="-"
+          }}
+        {{/forms/form-element-wrapper}}
+        {{#> forms/form-element-wrapper
+          id="slug-language-example"
+          labelText="Slug language"
+          hideError=true
+        }}
+          {{#> forms/select
+            id="slug-language-example"
+            dataAction="match-slug-language"
+            value="en"
+          }}
+            <option value="en">English</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+            <option value="ru">Russian</option>
+            <option value="ua">Ukrainian</option>
+            <option value="fr">French</option>
+          {{/forms/select}}
+        {{/forms/form-element-wrapper}}
+      </div>
+    {{/content-container/content-container}}
+    {{!-- 
+      isEmojiOnly function example 
+    --}}
+    {{#> content-container/content-container
+      titleId="isEmojiOnly"
+      title="isEmojiOnly"
+    }}
+      <p>Verify a string to find out if it includes only emoji or not. There is a build in regex for emoji <strong>/\p{Emoji_Presentation}/gu</strong> that can be used insteaf of isEmojiOnly function with custom regular expression.</p>
+      {{#> code-example/code-example}}
+        <pre>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'😀💩👀'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; true</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'asdqwertyvbn'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+          <span class="pl-k">const</span> <span class="pl-s1">hasOnlyEmoji</span> <span class="pl-c1">=</span> <span class="pl-en">isEmojiOnly</span><span class="pl-kos">(</span><span class="pl-s">'123👨🏻👩🏻456'</span><span class="pl-kos">)</span><span class="pl-kos">;</span> <span class="pl-c">// =&gt; false</span>
+        </pre>
+      {{/code-example/code-example}}
+      {{#> forms/form-element-wrapper
+        id="emoji-example"
+        labelText="Enter emoji"
+        errorText="Please enter only emoji"
+      }}
+        {{> forms/input-text
+          dataAction="match-emoji"
+          id="emoji-example"
+        }}
+      {{/forms/form-element-wrapper}}
+    {{/content-container/content-container}}
+  </main>
+{{/decorators/page}}
